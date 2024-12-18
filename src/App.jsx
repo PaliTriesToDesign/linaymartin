@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/all";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import Countdown from "./Countdown";
+import imageMain from './assets/images/IMG_0537.webpg'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -162,8 +163,7 @@ function App() {
             <img 
               loading="lazy"
               className="mainImage" 
-              src="./src/assets/images/IMG_0537.webp" 
-              alt="" />
+              src={imageMain}/>
           </div>
           {/* End of Main Image */}
 
