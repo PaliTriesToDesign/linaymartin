@@ -1,9 +1,11 @@
 import React, { useRef, useEffect } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import Countdown from "./Countdown";
 
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const monthNames = [
@@ -19,18 +21,25 @@ function App() {
   const envelopeRef = useRef(null);
   const envelopeFlapRef = useRef(null);
   const letterRef = useRef(null);
+  const letterBgRef = useRef(null);
   const tapToOpenRef = useRef(null);
-  
+
+  const envelopeFrontRef = useRef(null);
+  const envelopeBgRef = useRef(null);
+  const guestsRef = useRef(null);  
+
   useEffect(() => {
     const envelopeEl = envelopeRef.current;
     const envelopeFlapEl = envelopeFlapRef.current;    
     const letterEl = letterRef.current;
     const tapEl = tapToOpenRef.current;
+    const envelopeFrontEl = envelopeFrontRef.current;
+    const envelopeBgEl = envelopeBgRef.current;
 
     const handleClick = () => {
 
       const tl = gsap.timeline({
-        defaults: { duration: .75, ease: "bounce.out" }
+        defaults: { duration: .75, ease: "Power3.easeInOut" }
       });
 
       tl
@@ -41,33 +50,68 @@ function App() {
           scale: 1.5,
           opacity: 0
         }, "<")
-        .to(letterEl, {
-          y: -200,
-          height: 240
+        .to(envelopeFlapEl, {
+          zIndex: -1,
+        }, "<")
+        .to([envelopeFlapEl, envelopeEl, envelopeFrontEl, envelopeBgEl], {
+          y: 100
         })
         .to(envelopeFlapEl, {
-          zIndex: -1
+          y: 102
         }, "<")
-        .to(envelopeEl, {
+        .to(letterEl, {
+          // width: "100vw",
+          // height: "500vh",
+        },"<")
+        .to([linaYMartin, fullDateTop, dear, guestName], {
+          y: "0%",
+          opacity: 1
+        }, "<")
+        .to([envelopeFlapEl, envelopeEl, envelopeFrontEl, envelopeBgEl], {
+          // opacity: 0
+        }, "<")
+        .to(photoLocation, {
+          y: 56
         })
+
+        const letterTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#mainContainer",
+            start: "top top",
+            end: "bottom+=500 top",
+            toggleActions: "play none reverse none",
+            scrub: true,
+            markers: true
+          },
+          defaults: {
+            // ease: 'elastic.out(0.15, 0.3)',
+            // ease: "Power3.easeInOut",
+          }
+        })
+        
+        letterTl
+          .to([envelopeFlapEl, envelopeEl, envelopeFrontEl, envelopeBgEl], {
+            y: 500,
+          })
+          .to(letterEl, {
+            height: 940,
+          }, "<")
     }
 
-    envelopeEl.addEventListener("click", handleClick);
+    tapEl.addEventListener("click", handleClick);
 
     return () => {
-      envelopeEl.removeEventListener("click", handleClick);
+      tapEl.removeEventListener("click", handleClick);
     }
 
   }, [])
 
   return (
     <>
-      <div className="mainContainer">
+      <div id="mainContainer" className="mainContainer">
 
         {/* Envelope */}
-        <div 
-          className="envelopeContainer"
-          ref={envelopeRef}>
+        <div className="envelopeContainer">
 
           <div 
             className="tapToOpen"
@@ -80,59 +124,76 @@ function App() {
             ref={envelopeFlapRef}>
 
           </div>
-          <div className="envelope">
+          <div 
+            className="envelope"
+            ref={envelopeRef}>
           </div>
-          <div className="envelopeFront"></div>
-          <div className="envelopeBg"></div>
+          <div 
+            className="envelopeFront"
+            ref={envelopeFrontRef}></div>
+          <div 
+            className="envelopeBg"
+            ref={envelopeBgRef}></div>
           
         </div>
 
         <div 
           className="letterContainer"
           ref={letterRef}>
+
           <div className="letterTop">
-            <p>Lina & Martín</p>
-            <p>{fullDate}</p>
+            <p id="linaYMartin">Lina & Martín</p>
+            <p id="fullDateTop">{fullDate}</p>
           </div>
 
-          <div className="guestsContainer">
-            <p className="dear">Queridos</p>
-            <p className="guestName">Igor &amp; Martina</p>
-
-            <div className="guestsIcons">
-              <FontAwesomeIcon icon={faHeart} />
-              <FontAwesomeIcon icon={faHeart} />
-              <FontAwesomeIcon icon={faHeart} />
-            </div>
-            
+          <div 
+            className="guestsContainer"
+            ref={guestsRef}>
+            <p id="dear" className="dear">Queridos</p>
+            <p id="guestName" className="guestName">Igor &amp; Martina</p>
           </div>
 
           {/* Main Image */}
           <div className="mainImageContainer">
-            <div className="mainImageTopText">
+            <div id="photoLocation" className="mainImageTopText">
               <p>Argentina, 2024</p>
             </div>
-            <div className="imgOverlay"></div>
-            <img className="mainImage" src="./src/assets/images/IMG_0537.webp" alt="" />
-            <div className="mainImageBottomText">
-              <p>Boda</p>
-              <h1>Lina &amp; Martin</h1>
-            </div>
+            <div id="overlay" className="imgOverlay"></div>
+            <img 
+              loading="lazy"
+              className="mainImage" 
+              src="./src/assets/images/IMG_0537.webp" 
+              alt="" />
           </div>
           {/* End of Main Image */}
+
           <p className="intro">
             El gran día se acerca, y no podríamos estar más emocionados de compartir este momento tan especial con ustedes. Queremos que sean parte de nuestra historia y acompañarnos en una celebración que hemos preparado con todo nuestro cariño.
           </p>
           <div className="imagesContainer">
-            <img src="./src/assets/images/IMG_5621.webp" alt=""/>
-            <img src="./src/assets/images/IMG_6571.webp" alt=""/>
-            <img src="./src/assets/images/IMG_6593.webp" alt=""/>
+            <img
+              loading="lazy" 
+              src="./src/assets/images/IMG_5621.webp" 
+              alt=""/>
+            <img
+              loading="lazy" 
+              src="./src/assets/images/IMG_6571.webp" 
+              alt=""/>
+            <img
+              loading="lazy" 
+              src="./src/assets/images/IMG_6593.webp" 
+              alt=""/>
           </div>
         </div>
-          {/* End of Letter Container */}
+        {/* End of Letter Container */}
+      </div>
+
+      <div className="scrollDown">
+        <FontAwesomeIcon icon={faCaretDown} />   
       </div>
 
       <Countdown></Countdown>
+      {/* Countdown on the envelope front! */}
     </>
   )
 }

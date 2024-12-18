@@ -1,17 +1,10 @@
 :root {
-  --envelope-width: 400px;
-  --envelope-color: #db3434;
-  --envelope-color-dark: #bc2b2b;
-  --envelope-color-bg: #751919;
+  --envelope-width: 360px;
   --border-radius: .5rem;
-  --dark-gray: #0d0d0d;
-
-  --rust-orange: #cd5909;
-  --light-terracota: #cb6843;
-  --nude:#e3bc9a;
-  --beige: #ede8d0;
-  --sage-green: #98a869;
-  --ivory: #ffffe3;
+  --smoky-black: #11120D;
+  --olive-drab: #565449;
+  --bone: #d8cfbc;
+  --floral-white: #fffbf4;
 }
 
 * {
@@ -24,15 +17,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: var(--nude);
-  margin: 1rem;
+  font-family: "Archivo", sans-serif;
+  min-height: 400vh;
+  background-color: #87CEEB;
   color: var(--dark-gray);
-  font-family: "Old Standard TT", serif;
+  overflow-x: hidden;
 }
 
 h1 {
-  font-family: "Mea Culpa", serif;
   font-size: 3rem;
   white-space: nowrap;
 }
@@ -43,89 +35,57 @@ img {
 }
 
 .mainContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  position: relative;
+  position: fixed;
+  inset: 0;
 }
 
 .envelopeFlap {
   transform-origin: top;
 }
 
-.letterContainer {
-  transform: translateY(0);
-}
-
-/* .mainContainer:hover .envelopeFlap {
-  animation: flapRotate 0.5s ease-in-out forwards, flapZIndex 0.5s step-end forwards;
-  animation-name: flapRotate, flapZIndex;
-}
-
-.mainContainer:hover .envelopeContainer {
-  animation: envelopeSlide 0.5s ease-in-out 0.5s forwards;
-}
-
-.mainContainer:hover .letterContainer {
-  animation: letterSlide 0.5s ease-in-out 0.5s forwards;
-}
-
-@keyframes flapRotate {
-  100% {
-    transform: rotateX(180deg);
-    background-color: var(--envelope-color-bg);
-  }
-}
-
-@keyframes flapZIndex {
-  100% {
-    z-index: -1;
-  }
-}
-
-@keyframes letterSlide {
-  100% {
-    transform: translate(-50%, -80%);
-    height: 300px;
-    scale: 1;
-  }
-} */
-
-/* @keyframes envelopeSlide {
-  100% {
-    transform: translateY(100%);
-  }
-} */
-
 
 /* ENVELOPE */
 .envelopeContainer {
-  position: relative;
+  position: absolute;
 }
 
 .envelopeFlap {
   width: var(--envelope-width);
   height: 200px;
-  background-color: var(--envelope-color-dark);
+  background-color: #11120D;
   clip-path: polygon(100% 0, 100% 20%, 50% 50%, 0 20%, 0 0);
-  transition: transform 0.5s ease-in-out, background-color 0.5s ease-in-out;
   position: absolute;
   top: 0;
   z-index: 9;
 }
 
 .envelope {
+  display: flex;
+  align-items: end;
+  justify-content: start;
   width: var(--envelope-width);
   height: 200px;
-  background-color: var(--envelope-color);
+  background-color: #1c1e16;
   clip-path: polygon(28% 34%, 73% 35%, 88% 0, 100% 0, 100% 100%, 0 100%, 0 0, 11% 0);
   border-radius: 0  0 var(--border-radius) var(--border-radius);
   position: relative;
+}
+
+.envelope .envelopeNames {
+  padding: 1rem;
+  color: var(--floral-white);
+  opacity: .3;
 }
 
 .envelopeFront {
   --size: 200px;
   width: var(--size);
   height: calc(var(--size) / 2);
-  background-color: var(--envelope-colorrk);
+  background-color: #1c1e16;
   border-radius: calc(var(--border-radius) * 2);
   position: absolute;
   top: 25%;
@@ -148,7 +108,7 @@ img {
 .envelopeContainer .tapToOpen .outter {
   width: 100%;
   height: 100%;
-  background-color: var(--envelope-color-bg);
+  background-color: var(--olive-drab);
   border-radius: 100%;
   animation: outterBlink 1200ms ease-in-out infinite;
 }
@@ -161,7 +121,7 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--envelope-color-dark);
+  background-color: var(--smoky-black);
   border-radius: 100%;
   animation: innerBlink 1200ms ease-in-out infinite;
   animation-delay: 1000ms; 
@@ -194,7 +154,7 @@ img {
 
 
 .envelopeBg {
-  background-color: var(--envelope-color-bg);
+  background-color: var(--smoky-black);
   width: var(--envelope-width);
   border-radius: .5rem;
   position: absolute;
@@ -209,24 +169,35 @@ img {
   display: flex;
   flex-flow: column;
   align-items: center;
+  /* justify-content: center; */
   gap: 2rem;
-  background-color:  var(--ivory);
+  border-radius: .5rem;
+  background-color: var(--floral-white);
   width: calc(var(--envelope-width) * .95);
-  height: 150px;
-  padding: 2rem 1rem;
-  position: absolute;
-  left: 50%;
-  top: 20%;
-  transform: translateX(-50%);
+  height: 180px;
+  padding: 2rem;
+  /* transition: all 400ms ease-in-out; */
+  overflow: scroll;
   z-index: -1;
-  transition: all 400ms ease-in-out;
-  overflow: hidden;
+}
+
+.letterBg {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--envelope-width);
+  border-radius: 1rem;
+  height: 180px;
+  background-color: var(--floral-white);
+  z-index: -1;
 }
 
 .letterTop {
   display: flex;
   justify-content: space-between;
-  color: var(--light-terracota);
+  align-items: center;
+  flex-shrink: 0;
   font-size: .8rem;
   width: 100%;
   font-weight: bold;
@@ -237,17 +208,20 @@ img {
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  text-align: left;
+  width: fit-content;
   font-weight: bold;
+}
 
+.letterContainer .guestsContainer > p:first-of-type {
+  align-self: self-start;
 }
 
 .letterContainer .guestsContainer .guestName {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
-.letterContainer .guestsContainer .guestsIcons {
+.letterContainer .guestsIcons {
   display: flex;
   gap: .25rem;
   color: var(--light-terracota);
@@ -259,6 +233,7 @@ img {
 
 .mainImageContainer {
   position: relative;
+  min-height: fit-content;
   overflow: hidden;
 }
 
@@ -269,16 +244,16 @@ img {
 }
 
 .mainImageContainer .mainImageTopText {
-  top: .5rem;
+  top: -3rem;
   right: .5rem;
-  background-color: var(--ivory);
-  z-index: -1;
+  background-color: var(--floral-white);
+  /* z-index: -1; */
 }
 
 .mainImageContainer .mainImageBottomText {
-  top: 50%;
+  bottom: -40%;
   left: 50%;
-  color: var(--ivory);
+  color: var(--floral-white);
   transform: translate(-50%, -50%);
   font-size: 1.4rem;
   text-align: center;
@@ -290,9 +265,10 @@ img {
 }
 
 .mainImageContainer .imgOverlay {
-  background-color: var(--dark-gray);
+  background-color: var(--smoky-black);
   position: absolute;
   inset: 0;
+  opacity: 0;
 }
 
 .letterContainer .imagesContainer {
@@ -303,22 +279,30 @@ img {
 
 /* END OF LETTER */
 
-.gsapTest {
-  width: 20px;
-  height: 20px;
-  background-color: blue;
-  z-index: 1;
+/* SCROLLDOWN ==================== */
+.scrollDown {
+  position: absolute;
+  top: 90%;
+  color: var(--floral-white);
+  font-size: 1.25rem;
+  animation: scrollBlink 1000ms ease-in-out infinite;
 }
+
+@keyframes scrollBlink {
+  0%, 100% {opacity: 1;}
+  50% {transform: translateY(8px);  opacity: 0;}
+}
+/* END OF SCROLLDOWN ==================== */
 
 /* COUNTDOWN ===================== */
 .countDown {
   display: flex;
   gap: 1rem;
   padding: .5rem 1rem;
-  background-color: var(--ivory);
+  background-color: var(--floral-white);
   border-radius: .5rem;
   position: fixed;
-  bottom: 1rem;
+  bottom: -4rem;
   left: 50%;
   transform: translateX(-50%);
   pointer-events: none;
@@ -327,9 +311,6 @@ img {
 .countDown > * {
   text-align: center;
 }
-
-/* .countDown > *:not(:last-child) {
-} */
 
 .countDown p:first-child {
   font-weight: bold;
