@@ -20,13 +20,16 @@
 
 body { 
   display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: "Archivo", sans-serif;
   min-height: 400vh;
   background-color: #90bbff;
   color: var(--dark-gray);
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
+}
+
+#root {
+  position: relative;
+  width: 100%;
 }
 
 h1 {
@@ -75,7 +78,8 @@ img {
 .envelope {
   display: flex;
   align-items: end;
-  justify-content: start;
+  justify-content: center;
+  padding: 1rem;
   width: var(--envelope-width);
   height: 200px;
   background-color: #1c1e16;
@@ -95,6 +99,9 @@ img {
 
 .envelopeFront {
   --size: 200px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
   width: var(--size);
   height: calc(var(--size) / 2);
   background-color: #1c1e16;
@@ -194,8 +201,9 @@ img {
   z-index: -1;
 }
 
-.letterContainer .letterTop {
-  height: 2rem;
+.letterContainer .letterTopBar {
+  padding: 1rem;
+  width: 100%;
   background-color: var(--floral-white);
   z-index: 3;
 }
@@ -208,7 +216,7 @@ img {
   padding: 2rem;
 }
 
-.letterBg {
+.letterContainer .letterBg {
   position: absolute;
   top: 10%;
   left: 50%;
@@ -220,7 +228,7 @@ img {
   z-index: -1;
 }
 
-.letterTop {
+.letterContainer .letterTop {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -228,6 +236,12 @@ img {
   font-size: .8rem;
   width: 100%;
   font-weight: bold;
+  overflow: hidden;
+}
+
+.letterContainer .letterTop * {
+  transform: translateY(100%);
+  opacity: 0;
 }
 
 .letterContainer .guestsContainer {
@@ -258,6 +272,7 @@ img {
 .mainImageContainer {
   position: relative;
   min-height: fit-content;
+  border-radius: var(--border-radius);
   overflow: hidden;
 }
 
@@ -290,10 +305,16 @@ img {
 }
 
 .mainImageContainer .imgOverlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: var(--floral-white);
   background-color: var(--smoky-black);
+  /* background-color: red; */
   position: absolute;
   inset: 0;
-  opacity: 0;
+  opacity: 1;
 }
 
 .letterContainer .imagesContainer {
@@ -307,7 +328,9 @@ img {
 /* SCROLLDOWN ==================== */
 .scrollDown {
   position: absolute;
-  top: 90%;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
   color: var(--floral-white);
   font-size: 1.25rem;
   animation: scrollBlink 1000ms ease-in-out infinite;
@@ -315,29 +338,42 @@ img {
 
 @keyframes scrollBlink {
   0%, 100% {opacity: 1;}
-  50% {transform: translateY(8px);  opacity: 0;}
+  50% {transform: translate(-50%, 8px);  opacity: 0;}
 }
 /* END OF SCROLLDOWN ==================== */
 
 /* COUNTDOWN ===================== */
 .countDown {
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  width: fit-content;
+  background-color: var(--envelope-color-m);
   padding: .5rem 1rem;
-  background-color: var(--floral-white);
   border-radius: .5rem;
-  position: fixed;
-  bottom: -4rem;
-  left: 50%;
-  transform: translateX(-50%);
-  pointer-events: none;
+  color: #706a44;
+  font-size: .75rem;
+  position: sticky;
+  top: 1rem;
+  inset: 1rem;
+  transform: translateY(-200%);
+  opacity: 0;
+  z-index: -1;
+  /* pointer-events: none; */
 }
 
 .countDown > * {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+  text-align: right;
 }
 
 .countDown p:first-child {
+  padding: .25rem;
+  border-radius: .25rem;
+  background-color: var(--envelope-color-xd);
   font-weight: bold;
 }
 /* END OF COUNTDOWN ============== */
