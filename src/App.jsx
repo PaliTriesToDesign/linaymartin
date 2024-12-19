@@ -4,11 +4,29 @@ import { ScrollTrigger } from "gsap/all";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import Countdown from "./Countdown";
-import imageMain from './assets/images/IMG_0537.webp'
+import mainImage from './assets/images/main.webp'
+import martina from './assets/images/martina.webp'
+import midImage from './assets/images/mid.webp'
+import finalImage from './assets/images/final.webp'
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+
+  function generateURL(baseURL, name) {
+    if (!baseURL.endsWith("/")) {
+      baseURL += "/";
+    }
+    return `${baseURL}${encodeURIComponent(name)}`;
+  }
+  
+  // Example usage:
+  const baseURL = "https://linaymartin.com";
+  const guestName = "Lina y Martín";
+  
+  const generatedURL = generateURL(baseURL, guestName);
+  console.log(generatedURL);
+
   const monthNames = [
     "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
     "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
@@ -48,6 +66,7 @@ function App() {
       tl
         .to(envelopeFlapEl, {
           rotationX: 180,
+          backgroundColor: "#ffe999"
         })
         .to(tapEl, {
           scale: 1.5,
@@ -93,17 +112,17 @@ function App() {
         })
         envelopeTl
           .to([envelopeFlapEl, envelopeEl, envelopeFrontEl, envelopeBgEl], {
-            y: 360,
+            y: 460,
           })
           .to(letterEl, {
-            height: 640,
+            height: 840,
           }, "<")
 
           const letterTl = gsap.timeline({
             scrollTrigger: {
               trigger: "#mainContainer",
               start: "center top",
-              end: "bottom+=1000 top",
+              end: "bottom+=2000 top",
               toggleActions: "play none reverse none",
               scrub: true,
               markers: true
@@ -114,7 +133,7 @@ function App() {
           })
           letterTl
             .to(letterInnerEl, {
-              y: "-80%",
+              y: "-75%",
             })
     }
 
@@ -161,6 +180,7 @@ function App() {
         <div 
           className="letterContainer"
           ref={letterRef}>
+            <div className="letterTop"></div>
 
           <div 
             className="letterInner"
@@ -185,7 +205,7 @@ function App() {
               <img
                 loading="lazy"
                 className="mainImage"
-                src={imageMain}/>
+                src={mainImage}/>
             </div>
             {/* End of Main Image */}
             <p className="intro">
@@ -194,16 +214,13 @@ function App() {
             <div className="imagesContainer">
               <img
                 loading="lazy"
-                src="./src/assets/images/IMG_5621.webp"
-                alt=""/>
+                src={martina}/>
               <img
                 loading="lazy"
-                src="./src/assets/images/IMG_6571.webp"
-                alt=""/>
+                src={midImage}/>
               <img
                 loading="lazy"
-                src="./src/assets/images/IMG_6593.webp"
-                alt=""/>
+                src={finalImage}/>
             </div>
           </div>
         </div>

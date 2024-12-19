@@ -5,6 +5,11 @@
   --olive-drab: #565449;
   --bone: #d8cfbc;
   --floral-white: #fffbf4;
+  --envelope-color: #aaafff;
+  --envelope-color-m: #fff2c5;
+  --envelope-color-d: #feeba7;
+  --envelope-color-xd: #ffe999;
+  --tap-color: #ffb69b;
 }
 
 * {
@@ -19,7 +24,7 @@ body {
   justify-content: center;
   font-family: "Archivo", sans-serif;
   min-height: 400vh;
-  background-color: #87CEEB;
+  background-color: #90bbff;
   color: var(--dark-gray);
   overflow-x: hidden;
 }
@@ -59,7 +64,9 @@ img {
   width: var(--envelope-width);
   height: 200px;
   background-color: #11120D;
+  background-color: var(--envelope-color-d);
   clip-path: polygon(100% 0, 100% 20%, 50% 50%, 0 20%, 0 0);
+  border-radius: 1rem; /* Adjust corners for visual effect */
   position: absolute;
   top: 0;
   z-index: 9;
@@ -72,14 +79,16 @@ img {
   width: var(--envelope-width);
   height: 200px;
   background-color: #1c1e16;
+  background-color: var(--envelope-color-m);
   clip-path: polygon(28% 34%, 73% 35%, 88% 0, 100% 0, 100% 100%, 0 100%, 0 0, 11% 0);
-  border-radius: 0  0 var(--border-radius) var(--border-radius);
+  border-radius: .5rem; /* Adjust corners for visual effect */
+
   position: relative;
   pointer-events: none;
 }
 
 .envelope .envelopeNames {
-  padding: 1rem;
+  padding: .5rem;
   color: var(--floral-white);
   opacity: .3;
 }
@@ -89,6 +98,7 @@ img {
   width: var(--size);
   height: calc(var(--size) / 2);
   background-color: #1c1e16;
+  background-color: var(--envelope-color-m);
   border-radius: calc(var(--border-radius) * 2);
   position: absolute;
   top: 25%;
@@ -111,7 +121,7 @@ img {
 .mainContainer .tapToOpen .outter {
   width: 100%;
   height: 100%;
-  background-color: var(--olive-drab);
+  background-color: var(--tap-color);
   border-radius: 100%;
   animation: outterBlink 1200ms ease-in-out infinite;
 }
@@ -124,7 +134,7 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--olive-drab);
+  background-color: var(--tap-color);
   border-radius: 100%;
   animation: innerBlink 1200ms ease-in-out infinite;
   animation-delay: 1000ms; 
@@ -158,6 +168,7 @@ img {
 
 .envelopeBg {
   background-color: var(--smoky-black);
+  background-color: var(--envelope-color-xd);
   width: var(--envelope-width);
   border-radius: .5rem;
   position: absolute;
@@ -174,7 +185,6 @@ img {
   align-items: center;
   position: fixed;
   /* justify-content: center; */
-  padding-top: 2rem;
   border-radius: .5rem;
   background-color: var(--floral-white);
   width: calc(var(--envelope-width) * .95);
@@ -182,6 +192,12 @@ img {
   /* transition: all 400ms ease-in-out; */
   overflow: hidden;
   z-index: -1;
+}
+
+.letterContainer .letterTop {
+  height: 2rem;
+  background-color: var(--floral-white);
+  z-index: 3;
 }
 
 .letterContainer .letterInner {
