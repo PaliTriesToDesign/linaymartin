@@ -32,6 +32,7 @@ h1 {
 img {
   width: 100%;
   display: block;
+  border-radius: var(--border-radius);
 }
 
 .mainContainer {
@@ -51,6 +52,7 @@ img {
 /* ENVELOPE */
 .envelopeContainer {
   position: absolute;
+  pointer-events: none;
 }
 
 .envelopeFlap {
@@ -73,6 +75,7 @@ img {
   clip-path: polygon(28% 34%, 73% 35%, 88% 0, 100% 0, 100% 100%, 0 100%, 0 0, 11% 0);
   border-radius: 0  0 var(--border-radius) var(--border-radius);
   position: relative;
+  pointer-events: none;
 }
 
 .envelope .envelopeNames {
@@ -94,10 +97,10 @@ img {
   z-index: 1;
 }
 
-.envelopeContainer .tapToOpen {
+.mainContainer .tapToOpen {
   --size: 24px;
   position: absolute;
-  top: 43%;
+  top: 49%;
   left: 50%;
   transform: translateX(-50%);
   width: var(--size);
@@ -105,7 +108,7 @@ img {
   z-index: 11;
 }
 
-.envelopeContainer .tapToOpen .outter {
+.mainContainer .tapToOpen .outter {
   width: 100%;
   height: 100%;
   background-color: var(--olive-drab);
@@ -113,7 +116,7 @@ img {
   animation: outterBlink 1200ms ease-in-out infinite;
 }
 
-.envelopeContainer .tapToOpen .inner {
+.mainContainer .tapToOpen .inner {
   --size: 12px;
   width: var(--size);
   height: var(--size);
@@ -121,7 +124,7 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--smoky-black);
+  background-color: var(--olive-drab);
   border-radius: 100%;
   animation: innerBlink 1200ms ease-in-out infinite;
   animation-delay: 1000ms; 
@@ -169,16 +172,24 @@ img {
   display: flex;
   flex-flow: column;
   align-items: center;
+  position: fixed;
   /* justify-content: center; */
-  gap: 2rem;
+  padding-top: 2rem;
   border-radius: .5rem;
   background-color: var(--floral-white);
   width: calc(var(--envelope-width) * .95);
   height: 180px;
-  padding: 2rem;
   /* transition: all 400ms ease-in-out; */
-  overflow: scroll;
+  overflow: hidden;
   z-index: -1;
+}
+
+.letterContainer .letterInner {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 4rem;
+  padding: 2rem;
 }
 
 .letterBg {
@@ -210,6 +221,7 @@ img {
   justify-content: center;
   text-align: left;
   width: fit-content;
+  min-height: 30vh;
   font-weight: bold;
 }
 
@@ -227,10 +239,6 @@ img {
   color: var(--light-terracota);
 }
 
-.letterContainer .guestsContainer .guestsIcons svg:nth-of-type(odd) {
-  font-size: .75rem;
-}
-
 .mainImageContainer {
   position: relative;
   min-height: fit-content;
@@ -240,6 +248,7 @@ img {
 .mainImageContainer .mainImageTopText, .mainImageContainer .mainImageBottomText {
   position: absolute;
   padding: .5rem;
+  border-radius: calc(var(--border-radius) / 2);
   z-index: 1;
 }
 
