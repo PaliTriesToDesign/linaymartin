@@ -91,10 +91,6 @@ function App() {
           // width: "100vw",
           // height: "500vh",
         },"<")
-        .to([dear, guestName], {
-          y: "0%",
-          opacity: 1
-        }, "<")
         .to([envelopeFlapEl, envelopeEl, envelopeFrontEl, envelopeBgEl], {
           // opacity: 0
         }, "<")
@@ -139,6 +135,30 @@ function App() {
               y: "-75%",
             })
 
+          const introTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".guestsContainer",
+              start: "center center",
+              end: "bottom+=150 center",
+              toggleActions: "play none reverse none",
+              scrub: true,
+              markers: true
+            },
+            defaults: {
+              ease: "Power3.easeInOut",
+            }
+          })
+          introTl
+            .to([dear, guestsName], {
+              y: "0%",
+              stagger: 0.2,
+              opacity: 1
+            })
+            .to(intro, {
+              y: "0%",
+              opacity: 1
+            })
+
           const mainImageTl = gsap.timeline({
             scrollTrigger: {
               trigger: "#mainImageContainer",
@@ -146,7 +166,7 @@ function App() {
               end: "bottom+=50 center",
               toggleActions: "play none reverse none",
               scrub: true,
-              markers: true
+              markers: false
             },
             defaults: {
               // ease: "Power3.easeInOut",
@@ -222,12 +242,28 @@ function App() {
           <div 
             className="letterInner"
             ref={letterInnerRef}>
+
+            {/* Guests */}
             <div
               className="guestsContainer"
               ref={guestsRef}>
-              <p id="dear" className="dear">Queridos</p>
-              <p id="guestName" className="guestName">Igor &amp; Martina</p>
+
+              <div className="guestsInner">
+                <div className="dearContainer">
+                  <p id="dear" className="dear">Queridos</p>
+                </div>
+
+                <div className="guestNameContainer">
+                  <h1 id="guestsName" className="guestName">Igor &amp; Martina</h1>
+                </div>
+              </div>
+
+              <div className="introContainer">
+                <p id="intro" className="intro">Con mucho <span>cariño</span>, queremos compartir con ustedes una <strong>noticia que llena nuestros</strong> <strong>corazones de alegría y emoción.</strong></p>
+              </div>
+
             </div>
+            {/* End of Guests */}
             
             {/* Main Image */}
             <div id="mainImageContainer" className="mainImageContainer">
@@ -246,8 +282,8 @@ function App() {
             </div>
             {/* End of Main Image */}
             
-            <p className="intro">
-              El gran día se acerca, y no podríamos estar más emocionados de compartir este momento tan especial con ustedes. Queremos que sean parte de nuestra historia y acompañarnos en una celebración que hemos preparado con todo nuestro cariño.
+            <p className="mainParagraph">
+            Hemos decidido dar el gran paso y unir nuestras vidas en matrimonio. El gran día se acerca, y nos encantaría celebrarlo junto a ustedes.
             </p>
             <div className="imagesContainer">
               <img

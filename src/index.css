@@ -20,21 +20,33 @@
 
 body { 
   display: flex;
-  font-family: "Archivo", sans-serif;
   min-height: 400vh;
   background-color: #90bbff;
-  color: var(--dark-gray);
+  color: var(--olive-drab);
   /* overflow-x: hidden; */
+}
+
+h1 {
+  font-family: "Archivo", sans-serif;
+  font-size: 2.75rem;
+  /* white-space: nowrap; */
+}
+
+p {
+  font-family: sans-serif;
+  font-size: .8rem;
+}
+
+strong {
+  background-color: var(--envelope-color-d);
+  padding: .25rem;
+  line-height: 2;
+  border-radius: var(--border-radius);
 }
 
 #root {
   position: relative;
   width: 100%;
-}
-
-h1 {
-  font-size: 3rem;
-  white-space: nowrap;
 }
 
 img {
@@ -233,8 +245,8 @@ img {
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
-  font-size: .8rem;
   width: 100%;
+  font-style: italic;
   font-weight: bold;
   overflow: hidden;
 }
@@ -249,24 +261,28 @@ img {
   flex-flow: column;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
   text-align: left;
   width: fit-content;
-  min-height: 30vh;
+  min-height: 15rem;
   font-weight: bold;
 }
 
-.letterContainer .guestsContainer > p:first-of-type {
-  align-self: self-start;
+.letterContainer .guestsContainer .guestsInner {
+  width: 100%;
 }
 
-.letterContainer .guestsContainer .guestName {
-  font-size: 2rem;
+.letterContainer .guestsContainer .guestsInner .dearContainer, .letterContainer .guestsContainer .guestsInner .guestNameContainer, .letterContainer .guestsContainer .introContainer {
+  overflow: hidden;
 }
 
-.letterContainer .guestsIcons {
-  display: flex;
-  gap: .25rem;
-  color: var(--light-terracota);
+.letterContainer .guestsContainer .guestsInner .dearContainer .dear, .letterContainer .guestsContainer .guestsInner .guestNameContainer .guestName, .letterContainer .guestsContainer .introContainer .intro {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.letterContainer .guestsContainer .introContainer .intro {
+  font-weight: normal;
 }
 
 .mainImageContainer {
@@ -276,7 +292,7 @@ img {
   overflow: hidden;
 }
 
-.mainImageContainer .mainImageTopText, .mainImageContainer .mainImageBottomText {
+.mainImageContainer .mainImageTopText {
   position: absolute;
   padding: .5rem;
   border-radius: calc(var(--border-radius) / 2);
@@ -287,21 +303,6 @@ img {
   top: -3rem;
   right: .5rem;
   background-color: var(--floral-white);
-  /* z-index: -1; */
-}
-
-.mainImageContainer .mainImageBottomText {
-  bottom: -40%;
-  left: 50%;
-  color: var(--floral-white);
-  transform: translate(-50%, -50%);
-  font-size: 1.4rem;
-  text-align: center;
-}
-
-.mainImageContainer .mainImageBottomText p:last-child {
-  white-space: nowrap;
-  font-size: 2.75rem;
 }
 
 .mainImageContainer .imgOverlay {
@@ -315,6 +316,12 @@ img {
   position: absolute;
   inset: 0;
   opacity: 1;
+}
+
+.letterContainer .mainParagraph {
+  font-weight: bold;
+  font-size: 1.7rem;
+  line-height: 1;
 }
 
 .letterContainer .imagesContainer {
@@ -352,7 +359,6 @@ img {
   background-color: var(--envelope-color-m);
   padding: .5rem 1rem;
   border-radius: .5rem;
-  color: #706a44;
   font-size: .75rem;
   position: sticky;
   top: 1rem;
