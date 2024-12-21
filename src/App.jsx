@@ -111,10 +111,12 @@ function App() {
         })
         envelopeTl
           .to([envelopeFlapEl, envelopeEl, envelopeFrontEl, envelopeBgEl], {
-            y: 460,
+            // y: 460,
+            y: "25em",
           })
           .to(letterEl, {
-            height: 840,
+            // height: 840,
+            height: "80%",
           }, "<")
 
           const letterTl = gsap.timeline({
