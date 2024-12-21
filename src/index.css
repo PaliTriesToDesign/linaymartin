@@ -9,7 +9,7 @@
   --envelope-color-m: #fff2c5;
   --envelope-color-d: #feeba7;
   --envelope-color-xd: #ffe999;
-  --tap-color: #ffb69b;
+  --tap-color: #a09bff;
 }
 
 * {
@@ -37,12 +37,15 @@ p {
   font-size: .8rem;
 }
 
-strong {
-  background-color: var(--envelope-color-d);
+/* strong {
   padding: .25rem;
   line-height: 2;
   border-radius: var(--border-radius);
 }
+
+strong:hover {
+  background-color: var(--envelope-color);
+} */
 
 #root {
   position: relative;
@@ -67,6 +70,10 @@ img {
 .envelopeFlap {
   transform-origin: top;
 }
+
+/* SLIDE IN ON LOAD */
+
+/* END OF SLIDE IN ON LOAD */
 
 
 /* ENVELOPE */
@@ -142,7 +149,7 @@ img {
   height: 100%;
   background-color: var(--tap-color);
   border-radius: 100%;
-  animation: outterBlink 1200ms ease-in-out infinite;
+  animation: outterBlink 2000ms ease-in-out infinite;
 }
 
 .mainContainer .tapToOpen .inner {
@@ -155,30 +162,39 @@ img {
   transform: translate(-50%, -50%);
   background-color: var(--tap-color);
   border-radius: 100%;
-  animation: innerBlink 1200ms ease-in-out infinite;
-  animation-delay: 1000ms; 
+  animation: innerBlink 2000ms ease-in-out infinite;
 }
 
 @keyframes outterBlink {
-  80% {
-    opacity: 0;
-    transform: scale(1.6);
+  0% {
+    opacity: .25;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: .5; /* Make it visible again */
+    transform: scale(1.5);
   }
 
   100% {
-    opacity: 1; /* Make it visible again */
+    opacity: .25;
     transform: scale(1);
   }
 }
 
 @keyframes innerBlink {
-  10% {
-    opacity: 0;
-    transform: scale(2), translate(-50%, -50%);
+  0% {
+    opacity: .25;
+    transform: scale(1), translate(-50%, -50%);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1), translate(-50%, -50%);
   }
 
   100% {
-    opacity: 1;
+    opacity: .25;
     transform: scale(1), translate(-50%, -50%);
   }
 }
@@ -246,8 +262,6 @@ img {
   align-items: center;
   flex-shrink: 0;
   width: 100%;
-  font-style: italic;
-  font-weight: bold;
   overflow: hidden;
 }
 
@@ -289,20 +303,23 @@ img {
   position: relative;
   min-height: fit-content;
   border-radius: var(--border-radius);
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .mainImageContainer .mainImageTopText {
   position: absolute;
+  top: 3rem;
+  right: 3rem;
+  background-color: var(--envelope-color-m);
   padding: .5rem;
   border-radius: calc(var(--border-radius) / 2);
+  font-weight: bold;
+  opacity: 0;
   z-index: 1;
 }
 
-.mainImageContainer .mainImageTopText {
-  top: -3rem;
-  right: .5rem;
-  background-color: var(--floral-white);
+.mainImageContainer .mainImageTopText p {
+  font-size: 1.2rem;
 }
 
 .mainImageContainer .imgOverlay {
@@ -310,12 +327,16 @@ img {
   align-items: center;
   justify-content: center;
   font-size: 3rem;
-  color: var(--floral-white);
   background-color: var(--smoky-black);
-  /* background-color: red; */
+  border-radius: var(--border-radius);
   position: absolute;
   inset: 0;
   opacity: 1;
+}
+
+.mainImageContainer .imageInner, .imagesContainer .imageInner {
+  border-radius: var(--border-radius);
+  overflow: hidden;
 }
 
 .letterContainer .mainParagraph {
@@ -341,6 +362,7 @@ img {
   color: var(--floral-white);
   font-size: 1.25rem;
   animation: scrollBlink 1000ms ease-in-out infinite;
+  z-index: -1;
 }
 
 @keyframes scrollBlink {
@@ -350,23 +372,31 @@ img {
 /* END OF SCROLLDOWN ==================== */
 
 /* COUNTDOWN ===================== */
-.countDown {
+/* .letterInner .countDownContainer {
+  width: 100%;
+  overflow: hidden;
+} */
+
+.letterContainer .imagesContainer #dateContainer {
+  position: relative;
+}
+
+.letterInner .countDown {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: .5rem;
-  width: fit-content;
   background-color: var(--envelope-color-m);
   padding: .5rem 1rem;
   border-radius: .5rem;
   font-size: .75rem;
-  position: sticky;
-  top: 1rem;
-  inset: 1rem;
-  transform: translateY(-200%);
+  position: absolute;
+  top: -.5rem;
+  left: 50%;
+  transform: translate(-50%, 100%) scale(.75);
   opacity: 0;
-  z-index: -1;
-  /* pointer-events: none; */
+  z-index: 1;
+  pointer-events: none;
 }
 
 .countDown > * {

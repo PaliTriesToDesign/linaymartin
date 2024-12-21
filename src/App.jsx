@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +26,6 @@ function App() {
   const guestName = "Lina y Martín";
   
   const generatedURL = generateURL(baseURL, guestName);
-  console.log(generatedURL);
 
   const monthNames = [
     "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
@@ -49,6 +48,11 @@ function App() {
   const envelopeBgRef = useRef(null);
   const guestsRef = useRef(null);  
 
+  const [display, setDisplay] = useState("none");
+  const handleSetDisplay = () => {
+    setDisplay("block")
+  }
+
   useEffect(() => {
     const envelopeEl = envelopeRef.current;
     const envelopeFlapEl = envelopeFlapRef.current;    
@@ -59,6 +63,7 @@ function App() {
     const envelopeBgEl = envelopeBgRef.current;
 
     const handleClick = () => {
+      handleSetDisplay();
 
       const tl = gsap.timeline({
         defaults: { duration: .75, ease: "Power3.easeInOut" }
@@ -80,17 +85,13 @@ function App() {
           y: 100
         })
         .to(envelopeFlapEl, {
-          y: 102
+          y: 110
         }, "<")
         .to([linaYMartin, fullDateTop], {
           y: "0%",
           opacity: .5,
           stagger: 0.1
         }, "<-.02")
-        .to(letterEl, {
-          // width: "100vw",
-          // height: "500vh",
-        },"<")
         .to([envelopeFlapEl, envelopeEl, envelopeFrontEl, envelopeBgEl], {
           // opacity: 0
         }, "<")
@@ -103,10 +104,6 @@ function App() {
             toggleActions: "play none reverse none",
             scrub: true,
             markers: false
-          },
-          defaults: {
-            // ease: 'elastic.out(0.15, 0.3)',
-            // ease: "Power3.easeInOut",
           }
         })
         envelopeTl
@@ -117,6 +114,7 @@ function App() {
           .to(letterEl, {
             // height: 840,
             height: "80%",
+            y: "5em"
           }, "<")
 
           const letterTl = gsap.timeline({
@@ -127,9 +125,6 @@ function App() {
               toggleActions: "play none reverse none",
               scrub: true,
               markers: false
-            },
-            defaults: {
-              // ease: "Power3.easeInOut",
             }
           })
           letterTl
@@ -144,10 +139,7 @@ function App() {
               end: "bottom+=150 center",
               toggleActions: "play none reverse none",
               scrub: true,
-              markers: true
-            },
-            defaults: {
-              ease: "Power3.easeInOut",
+              markers: false
             }
           })
           introTl
@@ -165,26 +157,51 @@ function App() {
             scrollTrigger: {
               trigger: "#mainImageContainer",
               start: "center+=150 center",
-              end: "bottom+=50 center",
+              end: "center+=150 center",
               toggleActions: "play none reverse none",
-              scrub: true,
-              markers: false
-            },
-            defaults: {
-              // ease: "Power3.easeInOut",
+              scrub: false,
+              markers: true
             }
           })
           mainImageTl
-          .to(countDown, {
-            y: "0%",
-            opacity: 1
-          })
-          .to(photoLocation, {
-            y: 56
-          }, "<")
-          .to(imgOverlay, {
-            opacity: 0
-          })
+            .to(imgOverlay, {
+              duration: 2,
+              opacity: 0,
+            })
+            .to(photoLocation, {
+              y: "-3rem",
+              x: "4rem",
+              rotate: 20,
+              opacity: 1,
+              scale: 1
+            },"<")
+            .to(mainImageId, {
+              scale: 1.25,
+              duration: 4
+            },"<")
+          
+            const dateTl = gsap.timeline({
+              scrollTrigger: {
+                trigger: "#dateContainer",
+                start: "center+=125 center",
+                end: "center+=125 center",
+                toggleActions: "play none reverse none",
+                scrub: false,
+                markers: false
+              }
+            })
+            dateTl
+            .to(countDown, {
+              y: "0%",
+              x: "30%",
+              rotate: 15,
+              opacity: 1,
+              scale: 1
+            })
+            .to(martinaId, {
+              scale: 1.25,
+              duration: 4
+            },"<")
     }
 
     tapEl.addEventListener("click", handleClick);
@@ -196,9 +213,7 @@ function App() {
   }, [])
 
   return (
-    <>
-      <Countdown/>
-    
+    <>    
       <div id="mainContainer" className="mainContainer">
 
         <div 
@@ -277,20 +292,30 @@ function App() {
                 <FontAwesomeIcon icon={faCat} />
               </div>
 
-              <img
-                loading="lazy"
-                className="mainImage"
-                src={mainImage}/>
+              <div className="imageInner">
+                <img
+                  loading="lazy"
+                  id="mainImageId"
+                  className="mainImage"
+                  src={mainImage}/>
+              </div>
             </div>
             {/* End of Main Image */}
             
             <p className="mainParagraph">
             Hemos decidido dar el gran paso y unir nuestras vidas en matrimonio. El gran día se acerca, y nos encantaría celebrarlo junto a ustedes.
             </p>
+
+            {/* imagesContainer */}
             <div className="imagesContainer">
-              <img
-                loading="lazy"
-                src={martina}/>
+              
+              <div id="dateContainer">
+                <Countdown/>
+                <div className="imageInner">
+                  <img id="martinaId" loading="lazy" src={martina}/>
+                </div>
+              </div>
+              
               <img
                 loading="lazy"
                 src={midImage}/>
@@ -298,11 +323,15 @@ function App() {
                 loading="lazy"
                 src={finalImage}/>
             </div>
+            {/* End of imagesContainer */}
+
+
           </div>
+
         </div>
         {/* End of Letter Container */}
 
-        <div className="scrollDown">
+        <div className="scrollDown" style={{display: display}}>
           <FontAwesomeIcon icon={faCaretDown} />   
         </div>
       </div>
