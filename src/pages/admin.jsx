@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function Admin() {
   const [guestName, setGuestName] = useState('');
@@ -13,7 +12,7 @@ function Admin() {
   }, [guestName, gender, guestType]);
 
   const handleGenerateLink = () => {
-    const url = `${window.location.origin}/?guest=${encodeURIComponent(guestName)}&gender=${gender}&type=${guestType}`;
+    const url = `https://www.linaymartin.com/?guest=${encodeURIComponent(guestName)}&gender=${gender}&type=${guestType}`;
     setGeneratedLink(url); // Set the generated URL in state
   };
 
