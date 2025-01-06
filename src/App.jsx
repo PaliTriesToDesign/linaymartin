@@ -5,9 +5,7 @@ import Admin from './pages/admin';
 
 function App() {
   return (
-    <BrowserRouter>
-      {/* Ensures scrolling happens on every route change */}
-      
+    <BrowserRouter>      
       <Routes>
         <Route path="/" element={<Invitation />} />
         <Route path="/admin" element={<Admin />} />
