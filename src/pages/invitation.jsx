@@ -133,7 +133,8 @@ function Invitation() {
             trigger: "#mainContainer",
             start: "top top",
             end: "bottom+=500 top",
-            toggleActions: "play none reverse none",
+            // toggleActions: "play none reverse none",
+            toggleActions: "play none none none",
             // scrub: true, 
             scrub: false, 
             markers: false
@@ -155,7 +156,9 @@ function Invitation() {
               trigger: "#mainContainer",
               start: "center-=150 top",
               end: "bottom+=2000 top",
-              toggleActions: "play none reverse none",
+              // toggleActions: "play none reverse none",
+              toggleActions: "play none none none",
+              // scrub: true,
               scrub: true,
               markers: false
             }
@@ -210,7 +213,7 @@ function Invitation() {
               end: "top center",
               toggleActions: "play none reverse none",
               scrub: false,
-              markers: true
+              markers: false
             }
           })
           mainImageTl
@@ -234,7 +237,7 @@ function Invitation() {
                 end: "top-=150 center",
                 toggleActions: "play none reverse none",
                 scrub: false,
-                markers: true
+                markers: false
               }
             })
             mainParagraphTl
@@ -370,7 +373,7 @@ function Invitation() {
               
                 <div id="dateContainer">
                     <Overlay/>
-                    <Countdown targetDate="2025-06-21T17:00:00"/>
+                    <Countdown targetDate="2025-06-21T16:00:00"/>
                     <div className="imageInner">
                         <img id="martinaId" loading="lazy" src={martina}/>
                     </div>

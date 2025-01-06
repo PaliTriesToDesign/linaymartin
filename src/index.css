@@ -31,7 +31,7 @@ body {
 
 h1 {
   font-family: "Archivo", sans-serif;
-  font-size: 3rem;
+  font-size: 1.4rem;
   /* white-space: nowrap; */
 }
 
@@ -284,6 +284,10 @@ img {
   width: 100%;
 }
 
+.letterContainer .guestsContainer .guestsInner #dear {
+  font-weight: normal;
+}
+
 .letterContainer .introContainer {
   height: var(--section-h);
 }
@@ -370,7 +374,8 @@ img {
 .letterContainer .guestNameContainer, .introContainer .intro, .letterContainer .mainParagraph {
   display: flex;
   align-items: center;
-  font-size: 1.8rem;
+  text-align: center;
+  font-size: 1.4rem;
 }
 
 .letterContainer .mainParagraph {
