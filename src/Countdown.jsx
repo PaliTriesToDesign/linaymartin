@@ -1,30 +1,4 @@
-// function Countdown() {
- 
-//     return(
-//       <div id="countDown" className="countDown">
-//         <div className="daysContainer">
-//           <p className="days">180</p>
-//           <p>d</p>
-//         </div>
-//         <div className="hoursContainer">
-//           <p className="hours">13</p>
-//           <p>h</p>
-//         </div>
-//         <div className="minutesContainer">
-//           <p className="minutes">43</p>
-//           <p>m</p>
-//         </div>
-//         <div className="secondsContainer">
-//           <p className="seconds">10</p>
-//           <p>s</p>
-//         </div>
-//       </div>
-//     )
-// }
-
-// export default Countdown;
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const CountdownTimer = ({ targetDate }) => {
   const calculateTimeLeft = () => {
@@ -56,20 +30,20 @@ const CountdownTimer = ({ targetDate }) => {
   return (
     <div id="countDown" className="countDown">
       <div className="daysContainer">
-        <p className="days">{timeLeft.days ?? '0'}</p>
-        <p>d</p>
+        <p className="days">{timeLeft.days ?? "0"}</p>
+        <p>días</p>
       </div>
       <div className="hoursContainer">
-        <p className="hours">{timeLeft.hours ?? '0'}</p>
-        <p>h</p>
+        <p className="hours">{timeLeft.hours ?? "0"}</p>
+        <p>horas</p>
       </div>
       <div className="minutesContainer">
-        <p className="minutes">{timeLeft.minutes ?? '0'}</p>
-        <p>m</p>
+        <p className="minutes">{timeLeft.minutes ?? "0"}</p>
+        <p>minutos</p>
       </div>
       <div className="secondsContainer">
-        <p className="seconds">{timeLeft.seconds ?? '0'}</p>
-        <p>s</p>
+        <p className="seconds">{timeLeft.seconds ?? "0"}</p>
+        <p>segundos</p>
       </div>
     </div>
   );
