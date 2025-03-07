@@ -76,11 +76,11 @@ function Invitation() {
 
       const startTl = gsap.timeline({
         defaults: {
-          duration: 2,
+          duration: 2.5,
           ease: "power4.out",
           y: 0,
           opacity: 1,
-          stagger: 0.25,
+          stagger: 0.1,
         },
       });
 
@@ -105,11 +105,11 @@ function Invitation() {
             markers: false,
           },
           defaults: {
-            duration: 2,
+            duration: 1,
             ease: "power4.out",
             y: 0,
             opacity: 1,
-            stagger: 0.25,
+            stagger: 0.1,
           },
         });
 

@@ -1,3 +1,123 @@
+/* Desktop adjustments (1024px and up) */
+@media (min-width: 1024px) {
+  /* Root container - limit width and center with whitespace */
+  #root {
+    max-width: 500px; /* Slightly wider than mobile's --envelope-width (360px) */
+    margin: 0 auto; /* Center with whitespace on sides */
+  }
+
+  /* Main container - keep centered, slight scale up */
+  .mainContainer {
+    max-width: 500px; /* Match #root for consistency */
+    margin: 0 auto;
+  }
+
+  /* Envelope - scale up slightly */
+  :root {
+    --envelope-width: 450px; /* From 360px to 450px */
+    --section-h: 50vh; /* Slightly taller sections */
+    --section-font-size: 1.75rem; /* From 1.5rem to 1.75rem */
+  }
+
+  /* Envelope components */
+  .envelopeContainer {
+    scale: 0.85; /* Slightly larger than mobile’s 0.75 */
+  }
+
+  @keyframes envelopeSlideIn {
+    0% {
+      transform: translateY(400%);
+      scale: 0.85;
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0%);
+      scale: 1;
+      opacity: 1;
+    }
+  }
+
+  .envelopeFlap,
+  .envelope,
+  .envelopeBg {
+    width: var(--envelope-width); /* Updated to 450px */
+  }
+
+  /* Letter content */
+  #fullLetter .letterContainer {
+    max-width: 500px; /* Match main container */
+    margin: 0 auto;
+  }
+
+  .letterContainer .letterBg {
+    width: var(--envelope-width); /* Updated to 450px */
+    height: 220px; /* Slightly taller, from 180px */
+  }
+
+  .letterInner .mainSectionContainer .mainImageContainer {
+    width: 80%; /* Slightly larger than 70% */
+  }
+
+  /* Typography */
+  h1 {
+    font-size: clamp(2rem, 8vw, 5rem); /* Slightly larger than 1.5rem-4.5rem */
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 5rem); /* Slightly larger */
+  }
+
+  p {
+    font-size: 1.25rem; /* From 1.5rem */
+  }
+
+  #fullDateTop {
+    font-size: 1.5rem; /* From 1.25rem */
+  }
+
+  .letterContainer .guestNameContainer,
+  .introContainer .intro,
+  .letterContainer .mainParagraph {
+    font-size: 1.25rem; /* From 1.4rem */
+  }
+
+  .dearGuest .dearGuestInner,
+  .firstSection > *,
+  .secondSection > *,
+  .thirdSection > *,
+  .outro > * {
+    max-width: 80%; /* Slightly wider than 70% */
+  }
+
+  .dressCode .textMask p,
+  .outro .textMask p {
+    font-size: 2.5rem; /* From 2rem */
+  }
+
+  .thirdSection p {
+    font-size: 2.5rem; /* From 2rem */
+  }
+
+  .thirdSection .time {
+    font-size: 3.5rem; /* From 3rem */
+  }
+
+  /* Spacing */
+  .letterInner {
+    gap: 5rem; /* From 4rem */
+  }
+
+  .secondSection,
+  .thirdSection,
+  .outro {
+    gap: 3rem; /* From 2rem, except thirdSection’s 4rem */
+  }
+
+  .dressCode {
+    gap: 5rem; /* From 4rem */
+  }
+}
+
 :root {
   --envelope-width: 360px;
   --smoky-black: #11120d;
@@ -55,7 +175,7 @@ h2 {
 
 p {
   font-family: "Open Sans", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 #root {
@@ -238,12 +358,12 @@ img {
   display: flex;
   gap: 1.5rem;
 }
-
+/* 
 body:has(.mainSectionImage:hover) .letterContainer,
 body:has(.mainSectionImage:hover) .letterTopBar {
   background-color: var(--earth-dark-green);
   color: var(--earth-light-sand);
-}
+} */
 
 .outer {
   width: 100vw;
@@ -354,10 +474,6 @@ body:has(.mainSectionImage:hover) .letterTopBar {
   position: relative;
   min-height: fit-content;
   border-radius: 1rem;
-}
-
-#introDate {
-  /* font-weight: bold; */
 }
 
 .mainImageContainer .mainImageTopText {
@@ -712,15 +828,6 @@ button:hover {
   font-size: 2rem;
 }
 
-#fixedTest {
-  position: sticky;
-  top: 0;
-  background-color: red;
-  width: 100vw;
-  height: 10px;
-  z-index: 1;
-}
-
 .mainImageContainer {
   position: relative;
   overflow: visible;
@@ -729,52 +836,4 @@ button:hover {
 .mainImageContainer .mainSectionImage img {
   z-index: 9990;
   transition: all 200ms ease-in-out;
-}
-
-.imageStagger {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 32px;
-  opacity: 1;
-  transition: transform 0.3s ease, top 0.3s ease, opacity 0.3s ease;
-  z-index: -1;
-}
-
-.imageStagger:nth-child(1) {
-  background-color: var(--earth-dark-green);
-  transition-delay: calc(25ms * 2);
-  transform: translateY(0%);
-}
-
-.imageStagger:nth-child(2) {
-  background-color: var(--earth-green);
-  transition-delay: calc(25ms * 4);
-  transform: translateY(0%);
-}
-
-.imageStagger:nth-child(3) {
-  background-color: var(--earth-light-green);
-  transition-delay: calc(25ms * 6);
-  transform: translateY(0%);
-}
-
-.imageStagger:nth-child(4) {
-  background-color: var(--earth-sand);
-  transition-delay: calc(25ms * 8);
-  transform: translateY(0%);
-}
-
-.mainImageContainer:hover .imageStagger:nth-child(1) {
-  transform: translateY(-100%);
-}
-.mainImageContainer:hover .imageStagger:nth-child(2) {
-  transform: translateY(-75%);
-}
-.mainImageContainer:hover .imageStagger:nth-child(3) {
-  transform: translateY(-50%);
-}
-.mainImageContainer:hover .imageStagger:nth-child(4) {
-  transform: translateY(-25%);
 }
