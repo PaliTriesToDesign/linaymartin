@@ -221,14 +221,14 @@ function Letter() {
                   <h1 id="mainTitle">Lina & Martín</h1>
                 </div>
                 <div className="textMask">
-                  <div id="introDate">
-                    <p>21 de junio</p>
-                  </div>
                   <div id="introLocation">
                     <p>Iglesia de Palermo</p>
                   </div>
                   <div id="introCity">
                     <p>Manizales, Caldas</p>
+                  </div>
+                  <div id="introDate">
+                    <p>21 de junio</p>
                   </div>
                 </div>
               </div>
