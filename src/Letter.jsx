@@ -57,135 +57,6 @@ function Letter() {
     setDisplay("block");
   };
 
-  // useEffect(() => {
-  //   gsap.registerPlugin(ScrollTrigger);
-
-  //   const toggleActionsConfig = "play none reverse none";
-
-  //   const startTl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: "#fullLetter",
-  //       start: "center center",
-  //       end: "center center",
-  //       markers: true,
-  //     },
-  //   });
-
-  //   startTl.to([linaYMartin, fullDateTop], {
-  //     y: 0,
-  //     opacity: 1,
-  //   });
-
-  //   const guestsIntroTl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: ".guestsInner",
-  //       start: "center center",
-  //       end: "center center",
-  //       toggleActions: toggleActionsConfig,
-  //       scrub: false,
-  //       markers: false,
-  //     },
-  //   });
-
-  //   guestsIntroTl.to([dear, guestsName], {
-  //     y: "0%",
-  //     stagger: 0.2,
-  //     opacity: 1,
-  //     ease: "elastic.out(0.6,0.75)",
-  //     duration: 1,
-  //   });
-
-  //   const introTextTl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: ".introContainer",
-  //       start: "top+=150 center",
-  //       end: "top+=150 center",
-  //       toggleActions: toggleActionsConfig,
-  //       scrub: false,
-  //       markers: false,
-  //     },
-  //   });
-  //   introTextTl.to(intro, {
-  //     y: "0%",
-  //     opacity: 1,
-  //     ease: "elastic.out(0.6,0.75)",
-  //     duration: 2,
-  //   });
-
-  //   const mainImageTl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: "#mainImageContainer",
-  //       start: "top center",
-  //       end: "top center",
-  //       toggleActions: toggleActionsConfig,
-  //       scrub: false,
-  //       markers: false,
-  //     },
-  //   });
-  //   mainImageTl
-  //     .to(photoLocation, {
-  //       y: "-3rem",
-  //       x: "4rem",
-  //       rotate: 20,
-  //       opacity: 1,
-  //       scale: 1,
-  //     })
-  //     .to(
-  //       mainImageId,
-  //       {
-  //         scale: 1.1,
-  //         duration: 1,
-  //         ease: "elastic.out(0.6,0.75)",
-  //       },
-  //       "<"
-  //     );
-
-  //   const mainParagraphTl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: "#mainParagraphContainer",
-  //       start: "top-=150 center",
-  //       end: "top-=150 center",
-  //       toggleActions: toggleActionsConfig,
-  //       scrub: false,
-  //       markers: false,
-  //     },
-  //   });
-  //   mainParagraphTl.to(mainParagraph, {
-  //     y: "0%",
-  //     opacity: 1,
-  //     ease: "elastic.out(0.6,0.75)",
-  //     duration: 2,
-  //   });
-
-  //   const dateTl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: "#dateContainer",
-  //       start: "center+=125 center",
-  //       end: "center+=125 center",
-  //       toggleActions: "play none none none",
-  //       // toggleActions: toggleActionsConfig,
-  //       scrub: false,
-  //       markers: false,
-  //     },
-  //   });
-  //   dateTl
-  //     .to(countDown, {
-  //       y: "0%",
-  //       x: "30%",
-  //       rotate: 15,
-  //       opacity: 1,
-  //       scale: 1,
-  //     })
-  //     .to(
-  //       martinaId,
-  //       {
-  //         scale: 1.25,
-  //         duration: 4,
-  //       },
-  //       "<"
-  //     );
-  // }, []);
-
   return (
     <>
       <div id="fullLetter" className="fullLetter">
@@ -258,7 +129,7 @@ function Letter() {
                 </div>
               </div>
 
-              <div className="dearGuestDivider"></div>
+              <div id="dearGuestDivider" className="dearGuestDivider"></div>
 
               <div className="textMask">
                 <p id="dearSectionParagraph" className="firstSectionParagraph">
@@ -283,10 +154,7 @@ function Letter() {
                 <h2 id="firstSectionTitle">El Gran Paso</h2>
               </div>
               <div className="textMask">
-                <p
-                  id="firstSectionParagraph"
-                  className="secondSectionParagraph"
-                >
+                <p id="firstSectionParagraph" className="firstSectionParagraph">
                   {guestType === "individual" &&
                     gender === "masculino" &&
                     "Hemos decidido dar el gran paso y unir nuestras vidas en matrimonio. El gran día se acerca, y nos encantaría celebrarlo junto a ti"}
@@ -302,13 +170,13 @@ function Letter() {
           {/* FIRST */}
 
           {/* SECOND */}
-          <div className="secondSection">
+          <div id="secondSection" className="secondSection">
             <div className="sectionText">
               <div className="textMask">
-                <h2>El Reloj Sigue Avanzando</h2>
+                <h2 id="secondSectionTitle">El Reloj Sigue Avanzando</h2>
               </div>
               <div className="textMask">
-                <p>
+                <p id="secondSectionParagraph">
                   Y con él crece nuestra emoción. Falta poco tiempo para
                   celebrar el amor que nos une.
                 </p>
@@ -317,8 +185,8 @@ function Letter() {
 
             <div className="imageMask">
               <img
-                id="mainSectionImage"
-                className="mainSectionImage"
+                id="countDownImage"
+                className="countDownImage"
                 src={finalImage}
               />
               <Countdown targetDate="2025-06-21T16:00:00" />
@@ -327,24 +195,28 @@ function Letter() {
           {/* SECOND */}
 
           {/* THIRD */}
-          <div className="thirdSection">
-            <FontAwesomeIcon icon={faLocationDot} />
+          <div id="thirdSection" className="thirdSection">
+            <div className="imageMask">
+              <FontAwesomeIcon id="locationIcon" icon={faLocationDot} />
+            </div>
             <div className="textMask">
-              <p className="location">
-                Te esperamos en la <span>Iglesia de Palermo</span>, en el
-                corazón del barrio Palermo en Manizales, un lugar lleno de
-                historia y fe que será testigo del inicio de nuestra nueva vida
-                juntos
+              <p id="thirdSectionParagraph" className="location">
+                Te esperamos en la{" "}
+                <span id="locationSpan">Iglesia de Palermo</span>, en el corazón
+                del barrio Palermo en Manizales, un lugar lleno de historia y fe
+                que será testigo del inicio de nuestra nueva vida juntos
               </p>
             </div>
             <div className="textMask">
-              <p className="time">4:00 p.m.</p>
+              <p id="thirdSectionTime" className="time">
+                4:00 p.m.
+              </p>
             </div>
           </div>
           {/* THIRD */}
 
           {/* DRESS CODE */}
-          <div className="dressCode">
+          <div id="dressCodeSection" className="dressCode">
             <DressCodeGrid />
             <div className="textMask">
               <p>
@@ -359,7 +231,7 @@ function Letter() {
           {/* DRESS CODE */}
 
           {/* OUTRO */}
-          <div className="outro">
+          <div id="outroSection" className="outro">
             <div className="imageMask">
               <img src={martina} alt="" />
             </div>

@@ -27,22 +27,25 @@ const CountdownTimer = ({ targetDate }) => {
     return () => clearInterval(timer); // Cleanup on unmount
   }, [targetDate]);
 
+  // Function to add leading zero
+  const formatNumber = (number) => String(number ?? "0").padStart(2, "0");
+
   return (
     <div id="countDown" className="countDown">
-      <div className="daysContainer">
-        <p className="days">{timeLeft.days ?? "0"}</p>
+      <div id="days" className="daysContainer">
+        <p className="days">{formatNumber(timeLeft.days)}</p>
         <p>días</p>
       </div>
-      <div className="hoursContainer">
-        <p className="hours">{timeLeft.hours ?? "0"}</p>
+      <div id="hours" className="hoursContainer">
+        <p className="hours">{formatNumber(timeLeft.hours)}</p>
         <p>horas</p>
       </div>
-      <div className="minutesContainer">
-        <p className="minutes">{timeLeft.minutes ?? "0"}</p>
+      <div id="minutes" className="minutesContainer">
+        <p className="minutes">{formatNumber(timeLeft.minutes)}</p>
         <p>minutos</p>
       </div>
-      <div className="secondsContainer">
-        <p className="seconds">{timeLeft.seconds ?? "0"}</p>
+      <div id="seconds" className="secondsContainer">
+        <p className="seconds">{formatNumber(timeLeft.seconds)}</p>
         <p>segundos</p>
       </div>
     </div>

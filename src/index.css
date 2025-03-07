@@ -2,13 +2,13 @@
 @media (min-width: 1024px) {
   /* Root container - limit width and center with whitespace */
   #root {
-    max-width: 500px; /* Slightly wider than mobile's --envelope-width (360px) */
+    max-width: 100%; /* Slightly wider than mobile's --envelope-width (360px) */
     margin: 0 auto; /* Center with whitespace on sides */
   }
 
   /* Main container - keep centered, slight scale up */
   .mainContainer {
-    max-width: 500px; /* Match #root for consistency */
+    max-width: 100%; /* Match #root for consistency */
     margin: 0 auto;
   }
 
@@ -56,15 +56,6 @@
 
   .letterInner .mainSectionContainer .mainImageContainer {
     width: 80%; /* Slightly larger than 70% */
-  }
-
-  /* Typography */
-  h1 {
-    font-size: clamp(2rem, 8vw, 5rem); /* Slightly larger than 1.5rem-4.5rem */
-  }
-
-  h2 {
-    font-size: clamp(2rem, 4vw, 5rem); /* Slightly larger */
   }
 
   p {
@@ -151,7 +142,7 @@
 
 body {
   display: flex;
-  background-color: var(--earth-wood);
+  background-color: var(--floral-white);
   color: var(--olive-drab);
   max-width: 100vw;
   overflow-x: hidden;
@@ -168,9 +159,15 @@ h1 {
   white-space: nowrap;
 }
 
+@media (min-width: 1024px) {
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+}
+
 h2 {
   font-family: "Lobster", sans-serif;
-  font-size: clamp(1.5rem, 5vw, 4.5rem);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
 }
 
 p {
@@ -277,7 +274,7 @@ img {
   opacity: 0;
   display: none;
   z-index: 999;
-  background-color: rgb(255, 254, 245);
+  background-color: var(--floral-white);
   width: 100%;
 }
 
@@ -361,70 +358,17 @@ img {
   align-items: center;
   gap: 0.5rem;
 }
+
+.letterInner .mainSectionContainer #introDate {
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+}
 /* 
 body:has(.mainSectionImage:hover) .letterContainer,
-body:has(.mainSectionImage:hover) .letterTopBar {
+body:has(.mainSectionImdearGuestDividerage:hover) .letterTopBar {
   background-color: var(--earth-dark-green);
   color: var(--earth-light-sand);
 } */
-
-.outer {
-  width: 100vw;
-  height: 100vh;
-  overflow-x: hidden;
-}
-
-.scroll {
-  display: flex;
-  min-height: 100vh;
-  width: 300vw;
-}
-
-.scroll section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 100vw;
-}
-
-.scroll section.sectionOne {
-  background-color: purple;
-}
-.scroll section.sectionTwo {
-  background-color: tomato;
-}
-.scroll section.sectionThree {
-  background-color: Pink;
-}
-
-.horizontalSection {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.horizontalSection .horizontalSectionInner > div {
-  flex: 0 0 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.letterInner .horizontalSectionInner {
-  display: flex;
-}
-
-.letterInner .horizontalSection .sectionOne {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  background-color: red;
-}
-
-.letterInner .horizontalSection .sectionOne .sectionOneInner {
-  max-width: 70%;
-}
 
 .letterContainer .guestsContainer {
   display: flex;
@@ -492,48 +436,6 @@ body:has(.mainSectionImage:hover) .letterTopBar {
 
 .mainImageContainer .mainImageTopText p {
   font-size: 1.2rem;
-}
-
-.imgOverlay {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  background-color: var(--smoky-black);
-  border-radius: 1rem;
-  position: absolute;
-  inset: 0;
-  opacity: 1;
-  width: 100%;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.imgOverlay .imgOverlayInner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 100%;
-  animation: overlayFrames 800ms steps(3) infinite forwards;
-}
-
-@keyframes overlayFrames {
-  0% {
-    left: 100%;
-  }
-  100% {
-    left: -200%;
-  }
-}
-
-.imgOverlay .imgOverlayInner .overlayFrame {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 100%;
 }
 
 .mainImageContainer .imageInner,
@@ -637,8 +539,7 @@ button:hover {
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--earth-wood);
-  color: var(--nude-color);
+  color: var(--olive-drab);
   width: 100%;
   height: 100vh;
 }
@@ -651,14 +552,16 @@ button:hover {
 }
 
 #dear,
-.dearGuest .dearGuestInner .firstSectionParagraph {
+.dearGuest .dearGuestInner .firstSectionParagraph,
+#secondSectionParagraph,
+#thirdSectionParagraph {
   font-size: var(--section-font-size);
 }
 
 .dearGuest .dearGuestDivider {
-  background-color: var(--nude-color);
-  height: 4px;
-  width: 100%;
+  background-color: var(--olive-drab);
+  height: 2px;
+  width: 0%;
 }
 
 .firstSection,
@@ -677,18 +580,26 @@ button:hover {
   max-width: 70%;
 }
 
-.firstSection .secondSectionParagraph {
+.firstSection .firstSectionParagraph {
   font-size: var(--section-font-size);
 }
 
 .secondSection {
   gap: 2rem;
-  background-color: var(--earth-dark-green);
-  color: var(--floral-white);
 }
 
 .secondSection .imageMask {
   position: relative;
+}
+
+.secondSection .imageMask .countDownImage {
+  transform: translateY(100%);
+}
+
+.secondSection .sectionText {
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
 }
 
 .secondSection .countDown {
@@ -711,9 +622,11 @@ button:hover {
   text-align: right;
   background-color: rgba(0, 0, 0, 0.3);
   color: var(--floral-white);
+  opacity: 0;
   border-radius: 0.5rem;
+  transform: translateY(200%);
+  transform: scale(0.9);
 }
-
 .secondSection .countDown p:first-child {
   font-size: 2rem;
   font-weight: bold;
@@ -727,7 +640,7 @@ button:hover {
 }
 
 .thirdSection {
-  gap: 4rem;
+  gap: 2rem;
 }
 
 .thirdSection svg {
@@ -740,7 +653,8 @@ button:hover {
 
 .thirdSection .time {
   font-family: "Lobster";
-  font-size: 3rem;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
 #dummyLetter {
@@ -836,7 +750,7 @@ button:hover {
   overflow: visible;
 }
 
-.mainImageContainer .mainSectionImage img {
+.mainImageContainer .mainSectionImage {
   z-index: 9990;
-  transition: all 200ms ease-in-out;
+  opacity: 0;
 }

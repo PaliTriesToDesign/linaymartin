@@ -91,11 +91,14 @@ function Invitation() {
         })
         .to([mainTitle, introDate, introLocation, introCity], {})
         .to(introDate, {
-          fontWeight: 700,
+          backgroundColor: "#565449",
+          color: "#f7d9bc",
         });
 
       tl.then(() => {
-        // Create ScrollTrigger timelines after layout is updated
+        // Enable scroll after startTl completes
+        document.body.style.overflow = "auto";
+
         const dearGuestTl = gsap.timeline({
           scrollTrigger: {
             trigger: "#dearGuest",
@@ -113,7 +116,12 @@ function Invitation() {
           },
         });
 
-        dearGuestTl.to([dear, guestsName, dearSectionParagraph], {});
+        dearGuestTl.to(
+          [dear, guestsName, dearGuestDivider, dearSectionParagraph],
+          {
+            width: "100%",
+          }
+        );
 
         const firstSectionTl = gsap.timeline({
           scrollTrigger: {
@@ -121,7 +129,7 @@ function Invitation() {
             start: "top 70%",
             end: "bottom 20%",
             toggleActions: "play none none reverse",
-            markers: false, // Set to false in production if desired
+            markers: false,
           },
           defaults: {
             duration: 2,
@@ -134,9 +142,63 @@ function Invitation() {
 
         firstSectionTl.to([firstSectionTitle, firstSectionParagraph], {});
 
-        timelines = [dearGuestTl, firstSectionTl];
+        const secondSectionTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#secondSection",
+            start: "top 70%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse",
+            markers: false,
+          },
+          defaults: {
+            duration: 2,
+            ease: "power4.out",
+            y: 0,
+            opacity: 1,
+            stagger: 0.25,
+          },
+        });
 
-        // Force immediate refresh
+        secondSectionTl.to(
+          [
+            secondSectionTitle,
+            secondSectionParagraph,
+            countDownImage,
+            countDown,
+          ],
+          {}
+        );
+        secondSectionTl.to([days, hours, minutes, seconds], {
+          opacity: 1,
+          scale: 1,
+        });
+
+        const thirdSectionTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#thirdSection",
+            start: "top 70%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse",
+            markers: false,
+          },
+          defaults: {
+            duration: 2,
+            ease: "power4.out",
+            y: 0,
+            opacity: 1,
+            stagger: 0.25,
+          },
+        });
+
+        thirdSectionTl.to(
+          [locationIcon, thirdSectionParagraph, thirdSectionTime],
+          {}
+        );
+        thirdSectionTl.to(locationSpan, {
+          fontWeight: 700,
+        });
+
+        timelines = [dearGuestTl, firstSectionTl, secondSectionTl];
         ScrollTrigger.refresh();
       });
     };
@@ -150,17 +212,9 @@ function Invitation() {
     };
   }, []);
 
-  const enableScroll = () => {
-    document.body.style.overflow = "auto";
-  };
-
+  // Removed enableScroll from onClick
   return (
-    <div
-      id="mainContainer"
-      className="mainContainer"
-      onClick={enableScroll}
-      ref={envelopeRef}
-    >
+    <div id="mainContainer" className="mainContainer" ref={envelopeRef}>
       <div id="envelopeContainer" className="envelopeContainer">
         <div className="envelopeFlap" ref={envelopeFlapRef}></div>
         <div className="envelope" ref={envelopeRef}></div>
