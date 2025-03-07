@@ -3,6 +3,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import Letter from "../Letter";
 import DummyLetter from "../DummyLetter";
+import clickSound from "../assets/audioFxs/clickSound.mp3"; // Import your sound file
+import backgroundMusic from "../assets/audioFxs/weddingMusic.mp3";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +14,11 @@ function Invitation() {
   const envelopeFrontRef = useRef(null);
   const envelopeBgRef = useRef(null);
   const [display, setDisplay] = useState("none");
+  const hasPlayedSound = useRef(false); // Track if sound has played
+  const audio = new Audio(clickSound);
+  const hasPlayedMusic = useRef(false); // Track if music has started
+  const musicAudio = useRef(new Audio(backgroundMusic));
+  audio.volume = 0.5;
 
   useEffect(() => {
     gsap.to(envelopeRef.current, {
@@ -44,6 +51,33 @@ function Invitation() {
     let timelines = [];
 
     const handleClick = () => {
+      // Play sound only on first click
+      if (!hasPlayedSound.current) {
+        audio.play().catch((error) => {
+          console.error("Error playing sound:", error);
+        });
+        hasPlayedSound.current = true; // Mark sound as played
+      }
+
+      // Play looping music with fade-in on first click
+      if (!hasPlayedMusic.current) {
+        musicAudio.current.volume = 0; // Start at 0 volume
+        musicAudio.current
+          .play()
+          .then(() => {
+            // Fade in volume using GSAP
+            gsap.to(musicAudio.current, {
+              volume: 0.5, // Target volume (0 to 1)
+              duration: 2, // Fade-in duration
+              ease: "power2.in",
+            });
+          })
+          .catch((error) => {
+            console.error("Error playing music:", error);
+          });
+        hasPlayedMusic.current = true; // Mark music as started
+      }
+
       setDisplay("block");
 
       const tl = gsap.timeline({
@@ -102,8 +136,8 @@ function Invitation() {
         const dearGuestTl = gsap.timeline({
           scrollTrigger: {
             trigger: "#dearGuest",
-            start: "top 70%",
-            end: "bottom 20%",
+            start: "top 50%", // Trigger when top is 50% from top of viewport
+            end: "bottom 10%", // End when bottom is 10% from top of viewport
             toggleActions: "play none none reverse",
             markers: false,
           },
@@ -126,8 +160,8 @@ function Invitation() {
         const firstSectionTl = gsap.timeline({
           scrollTrigger: {
             trigger: "#firstSection",
-            start: "top 70%",
-            end: "bottom 20%",
+            start: "top 50%", // Adjusted to delay trigger
+            end: "bottom 10%", // Adjusted to end later
             toggleActions: "play none none reverse",
             markers: false,
           },
@@ -145,8 +179,8 @@ function Invitation() {
         const secondSectionTl = gsap.timeline({
           scrollTrigger: {
             trigger: "#secondSection",
-            start: "top 70%",
-            end: "bottom 20%",
+            start: "top 50%", // Adjusted to delay trigger
+            end: "bottom 10%", // Adjusted to end later
             toggleActions: "play none none reverse",
             markers: false,
           },
@@ -176,8 +210,8 @@ function Invitation() {
         const thirdSectionTl = gsap.timeline({
           scrollTrigger: {
             trigger: "#thirdSection",
-            start: "top 70%",
-            end: "bottom 20%",
+            start: "top 50%", // Adjusted to delay trigger
+            end: "bottom 10%", // Adjusted to end later
             toggleActions: "play none none reverse",
             markers: false,
           },
@@ -198,7 +232,12 @@ function Invitation() {
           fontWeight: 700,
         });
 
-        timelines = [dearGuestTl, firstSectionTl, secondSectionTl];
+        timelines = [
+          dearGuestTl,
+          firstSectionTl,
+          secondSectionTl,
+          thirdSectionTl,
+        ];
         ScrollTrigger.refresh();
       });
     };
