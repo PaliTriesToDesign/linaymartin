@@ -240,11 +240,11 @@ function Invitation() {
 
         const dressCodeTl = gsap.timeline({
           scrollTrigger: {
-            trigger: "#dressCode",
-            start: "top 50%", // Adjusted to delay trigger
+            trigger: "#dressCodeSection",
+            start: "center 50%", // Adjusted to delay trigger
             end: "bottom 10%", // Adjusted to end later
             toggleActions: "play none none reverse",
-            markers: false,
+            markers: true,
           },
           defaults: {
             duration: 2,
@@ -255,7 +255,7 @@ function Invitation() {
           },
         });
 
-        dressCodeTl.to([dressCodeTitle, dressCodeText, dressCodeSpan], {});
+        dressCodeTl.to([dressCodeTitle, dressCodeText], {});
 
         const outroTl = gsap.timeline({
           scrollTrigger: {
