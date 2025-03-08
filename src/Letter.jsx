@@ -178,7 +178,7 @@ function Letter() {
               <div className="textMask">
                 <p id="secondSectionParagraph">
                   Y con él crece nuestra emoción. Falta poco tiempo para
-                  celebrar el amor que nos une.
+                  celebrar el amor que nos une
                 </p>
               </div>
             </div>
@@ -218,25 +218,29 @@ function Letter() {
           {/* DRESS CODE */}
           <div id="dressCodeSection" className="dressCode">
             <DressCodeGrid />
-            <div className="textMask">
-              <p>
-                Para este día tan especial, te invitamos a unirte a nosotros
-                <span>vistiendo un atuendo elegante en tonos tierra</span>, una
-                elección que resaltará la calidez, la armonía y la esencia única
-                de nuestra celebración
-              </p>
+            <div className="dressCodeText">
+              <div className="textMask">
+                <h2 id="dressCodeTitle">Vestuario</h2>
+              </div>
+              <div className="textMask">
+                <p id="dressCodeText">
+                  Para este día tan especial, te invitamos a unirte a nosotros
+                  vistiendo un atuendo elegante en tonos tierra , una elección
+                  que resaltará la calidez, la armonía y la esencia única de
+                  nuestra celebración
+                </p>
+              </div>
             </div>
-            <DressCodeGrid />
           </div>
           {/* DRESS CODE */}
 
           {/* OUTRO */}
           <div id="outroSection" className="outro">
             <div className="imageMask">
-              <img src={martina} alt="" />
+              <img id="outroImage" src={martina} alt="" />
             </div>
             <div className="textMask">
-              <p>
+              <p id="outroText">
                 Tu presencia hará que este día sea aún más especial. Esperamos
                 de corazón contar contigo para celebrar el comienzo de esta
                 nueva etapa

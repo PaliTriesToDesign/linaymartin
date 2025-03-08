@@ -1,5 +1,5 @@
 /* Desktop adjustments (1024px and up) */
-@media (min-width: 1024px) {
+@media (min-width: 700px) {
   /* Root container - limit width and center with whitespace */
   #root {
     max-width: 100%; /* Slightly wider than mobile's --envelope-width (360px) */
@@ -246,7 +246,7 @@ img {
   padding: 1rem;
   width: var(--envelope-width);
   height: 200px;
-  background-color: var(--floral-white);
+  background-color: var(--envelope-color-m);
   clip-path: polygon(
     28% 34%,
     73% 35%,
@@ -692,16 +692,28 @@ button:hover {
   display: flex;
   flex-flow: column;
   align-items: center;
-  gap: 4rem;
   justify-content: space-between;
+  gap: 2rem;
   min-height: 100vh;
-  width: 100vw;
+  /* width: 100vw; */
+  margin: 1rem;
+}
+
+.dressCode .dressCodeText {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dressCode .dressCodeText #dressCodeText {
+  font-size: var(--section-font-size);
 }
 
 .dressCode .dressCodeInner {
   display: flex;
   flex-flow: column;
-  width: 100%;
+  width: 70%;
 }
 
 .dressCode .textMask {
@@ -714,10 +726,10 @@ button:hover {
 
 .dressCodeInner .dressCodeGrid {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(10, 1fr);
   gap: 0.5rem;
-  min-height: 10rem;
+  height: 100vh;
   width: 100%;
 }
 
@@ -734,15 +746,23 @@ button:hover {
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  min-height: 100vh;
+  min-height: 150vh;
 }
 
 .outro > * {
   max-width: 70%;
 }
 
-.outro .textMask p {
-  font-size: 2rem;
+.outro .imageMask #outroImage {
+  z-index: -1;
+}
+
+.outro .imageMask {
+  position: relative;
+}
+
+.outro .textMask #outroText {
+  font-size: var(--section-font-size);
 }
 
 .mainImageContainer {

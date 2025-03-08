@@ -62,6 +62,7 @@ function Invitation() {
       // Play looping music with fade-in on first click
       if (!hasPlayedMusic.current) {
         musicAudio.current.volume = 0; // Start at 0 volume
+        musicAudio.current.loop = true;
         musicAudio.current
           .play()
           .then(() => {
@@ -202,10 +203,15 @@ function Invitation() {
           ],
           {}
         );
-        secondSectionTl.to([days, hours, minutes, seconds], {
-          opacity: 1,
-          scale: 1,
-        });
+        secondSectionTl.to(
+          [days, hours, minutes, seconds],
+          {
+            stagger: 0.25,
+            opacity: 1,
+            scale: 1,
+          },
+          "<"
+        );
 
         const thirdSectionTl = gsap.timeline({
           scrollTrigger: {
@@ -232,12 +238,53 @@ function Invitation() {
           fontWeight: 700,
         });
 
+        const dressCodeTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#dressCode",
+            start: "top 50%", // Adjusted to delay trigger
+            end: "bottom 10%", // Adjusted to end later
+            toggleActions: "play none none reverse",
+            markers: false,
+          },
+          defaults: {
+            duration: 2,
+            ease: "power4.out",
+            y: 0,
+            opacity: 1,
+            stagger: 0.25,
+          },
+        });
+
+        dressCodeTl.to([dressCodeTitle, dressCodeText, dressCodeSpan], {});
+
+        const outroTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: "#outroSection",
+            start: "top 50%", // Adjusted to delay trigger
+            end: "bottom 10%", // Adjusted to end later
+            toggleActions: "play none none reverse",
+            markers: false,
+          },
+          defaults: {
+            duration: 2,
+            ease: "power4.out",
+            y: 0,
+            opacity: 1,
+            stagger: 0.25,
+          },
+        });
+
+        outroTl.to([outroImage, outroText], {});
+
         timelines = [
           dearGuestTl,
           firstSectionTl,
           secondSectionTl,
           thirdSectionTl,
+          dressCodeTl,
+          outroTl,
         ];
+
         ScrollTrigger.refresh();
       });
     };

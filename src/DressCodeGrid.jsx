@@ -34,7 +34,10 @@ function DressCodeGrid() {
     "#796451", // Nuevo: Bronce rústico
     "#625a47", // Nuevo: Gris terroso cálido
   ];
-  const numberOfCells = 100;
+
+  const cols = 3;
+  const rows = 10;
+  const numberOfCells = cols * rows;
 
   // State to hold the array of colors for all cells
   const [cellColors, setCellColors] = useState(
