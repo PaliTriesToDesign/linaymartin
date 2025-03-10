@@ -87,7 +87,7 @@ function Invitation() {
 
       tl.to(envelopeFlapEl, {
         rotationX: 180,
-        backgroundColor: "#908760",
+        backgroundColor: "#4f4b30",
       })
         .to([staggerOne, staggerTwo, staggerThree, staggerFour], {
           duration: 1.2,
