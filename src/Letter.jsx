@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/all";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import Countdown from "./Countdown";
-import mainImage from "./assets/images/main.webp";
+import posterImage from "./assets/images/main.webp";
 import martina from "./assets/images/final2.webp";
 import midImage from "./assets/images/mid.webp";
 import finalImage from "./assets/images/final.webp";
@@ -88,6 +88,7 @@ function Letter() {
                     loop
                     muted
                     controls
+                    poster={posterImage}
                   >
                     <source src={videoFile} type="video/mp4" />
                     Your browser does not support the video tag.
