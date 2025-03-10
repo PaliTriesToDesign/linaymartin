@@ -87,6 +87,7 @@ function Letter() {
                     className="mainSectionImage"
                     loop
                     muted
+                    controls
                   >
                     <source src={videoFile} type="video/mp4" />
                     Your browser does not support the video tag.

@@ -196,6 +196,22 @@ video {
   object-fit: cover; /* Optional: adjusts how the video fills its container */
 }
 
+/* Hide volume control in Chrome, Edge, and other Webkit/Blink browsers */
+.mainSectionImage::-webkit-media-controls-volume-slider,
+.mainSectionImage::-webkit-media-controls-mute-button {
+  display: none !important;
+}
+
+/* Hide volume control in Firefox */
+.mainSectionImage::-moz-range-track {
+  display: none !important; /* Note: Firefox doesn't separate volume controls as distinctly */
+}
+
+/* Ensure other controls remain visible */
+.mainSectionImage::-webkit-media-controls-panel {
+  display: flex !important;
+}
+
 #root {
   position: relative;
   width: 100%;
