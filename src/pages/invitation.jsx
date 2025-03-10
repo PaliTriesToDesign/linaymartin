@@ -279,7 +279,7 @@ function Invitation() {
             start: "top% 50%", // Adjusted to delay trigger
             end: "bottom 50%", // Adjusted to end later
             toggleActions: "play none none reverse",
-            markers: true,
+            markers: false,
           },
           defaults: {
             duration: 2,
