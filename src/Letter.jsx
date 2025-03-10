@@ -5,13 +5,12 @@ import { ScrollTrigger } from "gsap/all";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import Countdown from "./Countdown";
-import HorizontalScroll from "./HorizontalScroll";
 import mainImage from "./assets/images/main.webp";
-import martina from "./assets/images/martina.webp";
+import martina from "./assets/images/final2.webp";
 import midImage from "./assets/images/mid.webp";
 import finalImage from "./assets/images/final.webp";
 import DressCodeGrid from "./DressCodeGrid";
-// import Overlay from "./Overlay";
+import videoFile from "./assets/videos/video.mp4";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -77,11 +76,23 @@ function Letter() {
             <div className="mainSectionContainer">
               <div className="mainImageContainer">
                 <div className="imageMask">
-                  <img
+                  {/* <img
                     id="mainSectionImage"
                     className="mainSectionImage"
                     src={mainImage}
-                  />
+                  /> */}
+
+                  <video
+                    id="mainSectionImage"
+                    className="mainSectionImage"
+                    loop
+                    autoPlay
+                    muted
+                  >
+                    <source src={videoFile} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+
                   <div className="mainImageDate textMask">
                     <p id="mainImageDate">28 de Julio, 2024</p>
                   </div>
@@ -93,13 +104,16 @@ function Letter() {
                 </div>
                 <div className="textMask">
                   <div id="introLocation">
-                    <p>Iglesia de Palermo</p>
+                    <p>
+                      Ceremonia: Parroquia Nuestra Señora
+                      <br /> Del Sagrado Corazón
+                    </p>
                   </div>
                   <div id="introCity">
-                    <p>Manizales, Caldas</p>
+                    <p>Palermo, Manizales</p>
                   </div>
                   <div id="introDate">
-                    <p>21 de junio</p>
+                    <p>21 de junio, 2025</p>
                   </div>
                 </div>
               </div>
@@ -122,25 +136,23 @@ function Letter() {
                   </p>
                 </div>
                 <div className="textMask">
-                  <h1 id="guestsName" className="guestName">
+                  <h2 id="guestsName" className="guestName">
                     {!guestName && "Invitado"}
                     {guestName}
-                  </h1>
+                  </h2>
                 </div>
               </div>
-
-              <div id="dearGuestDivider" className="dearGuestDivider"></div>
 
               <div className="textMask">
                 <p id="dearSectionParagraph" className="firstSectionParagraph">
                   {guestType === "individual" &&
                     gender === "masculino" &&
-                    "Con mucho cariño, queremos compartir contigo una noticia que llena nuestros corazones de alegría y emoción"}
+                    "Nos llena de alegría compartir nuestro amor contigo. Te invitamos a celebrar juntos el día más especial de nuestras vidas. Tu presencia será muy importante para nuesto más lindo recuerdo"}
                   {guestType === "individual" &&
                     gender === "femenino" &&
-                    "Con mucho cariño, queremos compartir contigo una noticia que llena nuestros corazones de alegría y emoción"}
+                    "Nos llena de alegría compartir nuestro amor contigo. Te invitamos a celebrar juntos el día más especial de nuestras vidas. Tu presencia será muy importante para nuesto más lindo recuerdo"}
                   {guestType === "pareja" &&
-                    "Con mucho cariño, queremos compartir con ustedes una noticia que llena nuestros corazones de alegría y emoción"}
+                    "Nos llena de alegría compartr nuestro amor con ustedes. Los invitamos a celebrar juntos el día más especial de nuestras vidas. Su presencia será muy importante para nuestro más lindo recuerdo."}
                 </p>
               </div>
             </div>
@@ -151,18 +163,15 @@ function Letter() {
           <div id="firstSection" className="firstSection">
             <div className="sectionText">
               <div className="textMask">
-                <h2 id="firstSectionTitle">El Gran Paso</h2>
+                <h3 id="firstSectionTitle">Salvo mi corazón, todo está bien</h3>
               </div>
               <div className="textMask">
                 <p id="firstSectionParagraph" className="firstSectionParagraph">
-                  {guestType === "individual" &&
-                    gender === "masculino" &&
-                    "Hemos decidido dar el gran paso y unir nuestras vidas en matrimonio. El gran día se acerca, y nos encantaría celebrarlo junto a ti"}
-                  {guestType === "individual" &&
-                    gender === "femenino" &&
-                    "Hemos decidido dar el gran paso y unir nuestras vidas en matrimonio. El gran día se acerca, y nos encantaría celebrarlo junto a ti"}
-                  {guestType === "pareja" &&
-                    "Hemos decidido dar el gran paso y unir nuestras vidas en matrimonio. El gran día se acerca, y nos encantaría celebrarlo junto a ustedes"}
+                  "Pero me entiende también si le digo que yo no soy dualista,
+                  que el cuerpo y la mente son la misma cosa, y que quien ama
+                  solo con la mente se queda a mitad de camino, igual que quien
+                  ama solo con el cuerpo está condenado a que su amor no dure en
+                  la vejez." <br></br> - Héctor Abad Faciolince
                 </p>
               </div>
             </div>
@@ -173,12 +182,13 @@ function Letter() {
           <div id="secondSection" className="secondSection">
             <div className="sectionText">
               <div className="textMask">
-                <h2 id="secondSectionTitle">El Reloj Sigue Avanzando</h2>
+                <h3 id="secondSectionTitle">El Reloj Sigue Avanzando</h3>
               </div>
               <div className="textMask">
                 <p id="secondSectionParagraph">
                   Y con él crece nuestra emoción. Falta poco tiempo para
-                  celebrar el amor que nos une
+                  celebrar el amor que nos une{" "}
+                  {guestType === "individual" ? "contigo" : "junto a ustedes"}.
                 </p>
               </div>
             </div>
@@ -199,18 +209,39 @@ function Letter() {
             <div className="imageMask">
               <FontAwesomeIcon id="locationIcon" icon={faLocationDot} />
             </div>
-            <div className="textMask">
-              <p id="thirdSectionParagraph" className="location">
-                Te esperamos en la{" "}
-                <span id="locationSpan">Iglesia de Palermo</span>, en el corazón
-                del barrio Palermo en Manizales, un lugar lleno de historia y fe
-                que será testigo del inicio de nuestra nueva vida juntos
-              </p>
+            <div className="topMap">
+              <div className="textMask">
+                <p id="thirdSectionParagraph" className="location">
+                  Ceremonia: Parroquia Nuestra Señora Del Sagrado Corazón <br />
+                  <strong>Palermo, Manizales</strong> <br />
+                  <strong> Junio 21, 4:00 p.m.</strong>
+                </p>
+              </div>
+              <div className="imageMask">
+                <iframe
+                  id="mapOne"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3974.32170603175!2d-75.49011922398472!3d5.051497594925216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e47657a1a63606f%3A0x768c9269748fa488!2sParroquia%20Nuestra%20Se%C3%B1ora%20del%20Sagrado%20Coraz%C3%B3n!5e0!3m2!1ses!2sca!4v1741573660043!5m2!1ses!2sca"
+                  loading="lazy"
+                ></iframe>
+              </div>
             </div>
-            <div className="textMask">
-              <p id="thirdSectionTime" className="time">
-                4:00 p.m.
-              </p>
+
+            <div className="bottomMap">
+              <div className="textMask">
+                <p id="receptionLocation" className="receptionLocation">
+                  Recepción: Hacienda Lindaraja
+                  <br />
+                  <strong>Manizales</strong> <br />
+                  <strong> Después de la eucaristía</strong>
+                </p>
+              </div>
+              <div className="imageMask">
+                <iframe
+                  id="mapTwo"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31793.412111998125!2d-75.52553789036335!3d5.075122269636957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e476f95c6364fd9%3A0x58bea6b6a41af331!2sHacienda%20Lindaraja!5e0!3m2!1ses!2sca!4v1741572930510!5m2!1ses!2sca"
+                  loading="lazy"
+                ></iframe>
+              </div>
             </div>
           </div>
           {/* THIRD */}
@@ -220,15 +251,26 @@ function Letter() {
             <DressCodeGrid />
             <div className="dressCodeText">
               <div className="textMask">
-                <h2 id="dressCodeTitle">Vestuario</h2>
+                <h3 id="dressCodeTitle">Código de vestuario</h3>
               </div>
               <div className="textMask">
                 <p id="dressCodeText">
-                  Para este día tan especial, te invitamos a unirte a nosotros
-                  vistiendo un atuendo elegante en tonos tierra , una elección
-                  que resaltará la calidez, la armonía y la esencia única de
-                  nuestra celebración
+                  Formal &mdash; Colores Tierra. <br /> &#40;Se reserva el color
+                  blanco para la novia&#41;
                 </p>
+              </div>
+              <div className="textMask">
+                <div id="button" className="dressCodeButtonContainer">
+                  <p>Algunas ideas aquí: </p>
+                  <div className="dressCodeButton">
+                    <a
+                      href="https://co.pinterest.com/Linapaolamramirez/dress-code/"
+                      target="_blank"
+                    >
+                      Pinterest
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -241,13 +283,32 @@ function Letter() {
             </div>
             <div className="textMask">
               <p id="outroText">
-                Tu presencia hará que este día sea aún más especial. Esperamos
-                de corazón contar contigo para celebrar el comienzo de esta
-                nueva etapa
+                {guestType === "individual" ? "¡Prepárate!" : "¡Prepárense!"}{" "}
+                <br />
+                Nuestra boda será inolvidable. <br />
               </p>
             </div>
           </div>
           {/* OUTRO */}
+
+          {/* CONTACT INFO */}
+          <div className="contactSection">
+            <h3>Confirmación</h3>
+            <p>
+              Es muy importante contar con{" "}
+              {guestType === "individual" ? "tu" : "su"} presencia, para ello
+              dispondremos de un número WhatsApp al cual{" "}
+              {guestType === "individual" ? "deberás" : "deberán"}
+              <strong> confirmar asistencia</strong>: <br /> +57 313 716 6717,
+              Alejandra García Acevedo, Wedding Planner.
+            </p>
+            <p>
+              {guestType === "individual" ? "Recuerda" : "Recuerden"}: Nos
+              reservamos el ingreso de niños y niñas al evento.
+            </p>
+            <p>Habrá lluvia de sobres.</p>
+          </div>
+          {/* CONTACT INFO */}
         </div>
         {/* End of Letter Container */}
       </div>

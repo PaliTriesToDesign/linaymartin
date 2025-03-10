@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/all";
 import Letter from "../Letter";
 import DummyLetter from "../DummyLetter";
 import clickSound from "../assets/audioFxs/clickSound.mp3"; // Import your sound file
-import backgroundMusic from "../assets/audioFxs/weddingMusic.mp3";
+import backgroundMusic from "../assets/audioFxs/bgSong.mp3";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,7 +68,7 @@ function Invitation() {
           .then(() => {
             // Fade in volume using GSAP
             gsap.to(musicAudio.current, {
-              volume: 0.5, // Target volume (0 to 1)
+              volume: 0.25, // Target volume (0 to 1)
               duration: 2, // Fade-in duration
               ease: "power2.in",
             });
@@ -87,7 +87,7 @@ function Invitation() {
 
       tl.to(envelopeFlapEl, {
         rotationX: 180,
-        backgroundColor: "#ffe999",
+        backgroundColor: "#908760",
       })
         .to([staggerOne, staggerTwo, staggerThree, staggerFour], {
           duration: 1.2,
@@ -151,12 +151,9 @@ function Invitation() {
           },
         });
 
-        dearGuestTl.to(
-          [dear, guestsName, dearGuestDivider, dearSectionParagraph],
-          {
-            width: "100%",
-          }
-        );
+        dearGuestTl.to([dear, guestsName, dearSectionParagraph], {
+          width: "100%",
+        });
 
         const firstSectionTl = gsap.timeline({
           scrollTrigger: {
@@ -231,31 +228,50 @@ function Invitation() {
         });
 
         thirdSectionTl.to(
-          [locationIcon, thirdSectionParagraph, thirdSectionTime],
+          [
+            locationIcon,
+            thirdSectionParagraph,
+            mapOne,
+            receptionLocation,
+            mapTwo,
+          ],
           {}
         );
-        thirdSectionTl.to(locationSpan, {
-          fontWeight: 700,
-        });
 
         const dressCodeTl = gsap.timeline({
           scrollTrigger: {
             trigger: "#dressCodeSection",
-            start: "center 50%", // Adjusted to delay trigger
+            start: "top 50%", // Adjusted to delay trigger
             end: "bottom 10%", // Adjusted to end later
             toggleActions: "play none none reverse",
-            markers: true,
+            markers: false,
           },
           defaults: {
             duration: 2,
             ease: "power4.out",
             y: 0,
             opacity: 1,
-            stagger: 0.25,
+            stagger: 0.15,
           },
         });
 
-        dressCodeTl.to([dressCodeTitle, dressCodeText], {});
+        dressCodeTl.to(
+          [
+            dressCodeCell0,
+            dressCodeCell1,
+            dressCodeCell2,
+            dressCodeCell3,
+            dressCodeCell4,
+            dressCodeCell5,
+            dressCodeCell6,
+            dressCodeCell7,
+            dressCodeCell8,
+            dressCodeTitle,
+            dressCodeText,
+            button,
+          ],
+          {}
+        );
 
         const outroTl = gsap.timeline({
           scrollTrigger: {
@@ -303,9 +319,14 @@ function Invitation() {
     <div id="mainContainer" className="mainContainer" ref={envelopeRef}>
       <div id="envelopeContainer" className="envelopeContainer">
         <div className="envelopeFlap" ref={envelopeFlapRef}></div>
-        <div className="envelope" ref={envelopeRef}></div>
+        <div className="envelope" ref={envelopeRef}>
+          <h1>L & M</h1>
+        </div>
         <div className="envelopeFront" ref={envelopeFrontRef}></div>
         <div className="envelopeBg" ref={envelopeBgRef}></div>
+        <div className="volumeUp">
+          <p>Sube el volumen</p>
+        </div>
       </div>
       <DummyLetter />
       <Letter style={{ display }} />
