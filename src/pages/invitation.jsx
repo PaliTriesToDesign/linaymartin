@@ -276,10 +276,10 @@ function Invitation() {
         const outroTl = gsap.timeline({
           scrollTrigger: {
             trigger: "#outroSection",
-            start: "top 50%", // Adjusted to delay trigger
-            end: "bottom 10%", // Adjusted to end later
+            start: "top% 50%", // Adjusted to delay trigger
+            end: "bottom 50%", // Adjusted to end later
             toggleActions: "play none none reverse",
-            markers: false,
+            markers: true,
           },
           defaults: {
             duration: 2,
