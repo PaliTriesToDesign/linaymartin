@@ -148,10 +148,10 @@ function Letter() {
                 <p id="dearSectionParagraph" className="firstSectionParagraph">
                   {guestType === "individual" &&
                     gender === "masculino" &&
-                    "Nos llena de alegría compartir nuestro amor contigo. Te invitamos a celebrar juntos el día más especial de nuestras vidas. Tu presencia será muy importante para nuesto más lindo recuerdo"}
+                    "Nos llena de alegría compartir nuestro amor contigo. Te invitamos a celebrar juntos el día más especial de nuestras vidas. Tu presencia será muy importante para nuesto más lindo recuerdo."}
                   {guestType === "individual" &&
                     gender === "femenino" &&
-                    "Nos llena de alegría compartir nuestro amor contigo. Te invitamos a celebrar juntos el día más especial de nuestras vidas. Tu presencia será muy importante para nuesto más lindo recuerdo"}
+                    "Nos llena de alegría compartir nuestro amor contigo. Te invitamos a celebrar juntos el día más especial de nuestras vidas. Tu presencia será muy importante para nuesto más lindo recuerdo."}
                   {guestType === "pareja" &&
                     "Nos llena de alegría compartr nuestro amor con ustedes. Los invitamos a celebrar juntos el día más especial de nuestras vidas. Su presencia será muy importante para nuestro más lindo recuerdo."}
                 </p>
@@ -262,15 +262,12 @@ function Letter() {
               </div>
               <div className="textMask">
                 <div id="button" className="dressCodeButtonContainer">
-                  <p>Algunas ideas aquí: </p>
-                  <div className="dressCodeButton">
-                    <a
-                      href="https://co.pinterest.com/Linapaolamramirez/dress-code/"
-                      target="_blank"
-                    >
-                      Pinterest
-                    </a>
-                  </div>
+                  <a
+                    href="https://co.pinterest.com/Linapaolamramirez/dress-code/"
+                    target="_blank"
+                  >
+                    Algunas ideas aquí: Pinterest
+                  </a>
                 </div>
               </div>
             </div>
@@ -300,7 +297,7 @@ function Letter() {
               {guestType === "individual" ? "tu" : "su"} presencia, para ello
               dispondremos de un número WhatsApp al cual{" "}
               {guestType === "individual" ? "deberás" : "deberán"}
-              <strong> confirmar asistencia</strong>: <br /> +57 313 716 6717,
+              <strong> confirmar asistencia</strong>: <br /> +57 322 9588192,
               Alejandra García Acevedo, Wedding Planner.
             </p>
             <p>

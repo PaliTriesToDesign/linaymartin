@@ -320,12 +320,12 @@ function Invitation() {
       <div id="envelopeContainer" className="envelopeContainer">
         <div className="envelopeFlap" ref={envelopeFlapRef}></div>
         <div className="envelope" ref={envelopeRef}>
-          <h1>L & M</h1>
+          <h1>L yM</h1>
         </div>
         <div className="envelopeFront" ref={envelopeFrontRef}></div>
         <div className="envelopeBg" ref={envelopeBgRef}></div>
         <div className="volumeUp">
-          <p>Sube el volumen</p>
+          <p>Sube el volumen y abre el sobre...</p>
         </div>
       </div>
       <DummyLetter />

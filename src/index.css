@@ -59,7 +59,7 @@
   }
 
   p {
-    text-align: justify;
+    text-align: center;
     font-size: 1.25rem; /* From 1.5rem */
   }
 
@@ -154,6 +154,12 @@ body:has(.adminPanel) {
   color: var(--nude-color);
 }
 
+h1,
+h2,
+h3 {
+  text-align: center;
+}
+
 h1 {
   font-family: "Mea Culpa", cursive;
   font-size: clamp(2.5rem, 15vw, 4.5rem);
@@ -178,8 +184,7 @@ h3 {
 }
 
 p {
-  /* font-family: "Open Sans", sans-serif; */
-  text-align: justify;
+  text-align: center;
   font-family: "Frank Ruhl Libre", serif;
   font-size: 1.25rem;
 }
@@ -194,6 +199,7 @@ video {
   height: auto;
   max-height: 100vh; /* Prevents it from overflowing the viewport */
   object-fit: cover; /* Optional: adjusts how the video fills its container */
+  /* filter: grayscale(); */
 }
 
 /* Hide volume control in Chrome, Edge, and other Webkit/Blink browsers */
@@ -260,10 +266,7 @@ iframe {
   opacity: 0;
 }
 
-.envelopeContainer:hover {
-  transform: scale(2);
-}
-
+/* Slide-in animation */
 @keyframes envelopeSlideIn {
   0% {
     transform: translateY(400%);
@@ -282,6 +285,7 @@ iframe {
   bottom: -20%;
   left: 50%;
   opacity: 0.5;
+  width: 100%;
   transform: translateX(-50%);
   animation: blink 2400ms ease-in-out infinite;
 }
@@ -404,7 +408,7 @@ iframe {
 }
 
 .letterInner .mainSectionContainer .mainImageContainer {
-  width: 70%;
+  width: 80%;
 }
 
 .letterInner .mainSectionContainer .mainImageDate {
@@ -590,7 +594,7 @@ button:hover {
 }
 
 #linaYMartin {
-  font-family: "Lobster";
+  font-family: "Mea Culpa", serif;
 }
 
 #fullDateTop {
@@ -620,7 +624,7 @@ button:hover {
   display: flex;
   flex-flow: column;
   gap: 1rem;
-  max-width: 70%;
+  max-width: 80%;
 }
 
 #dear,
@@ -658,7 +662,7 @@ button:hover {
 .firstSection > *,
 .secondSection > *,
 .thirdSection > * {
-  max-width: 70%;
+  max-width: 80%;
 }
 
 .firstSection .firstSectionParagraph {
@@ -724,6 +728,12 @@ button:hover {
   gap: 4rem;
 }
 
+.thirdSection > .imageMask {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .thirdSection svg {
   font-size: 2rem;
 }
@@ -770,8 +780,7 @@ button:hover {
   justify-content: center;
   gap: 2rem;
   min-height: 100vh;
-  /* width: 100vw; */
-  margin: 1rem;
+  max-width: 80%;
 }
 
 .dressCode .dressCodeText {
@@ -816,28 +825,24 @@ button:hover {
 .dressCodeButtonContainer {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 1rem;
+  justify-content: center;
+  color: var(--nude-color);
   width: 100%;
-}
-
-.dressCodeButtonContainer > * {
-  font-size: 1.5rem;
-}
-
-.dressCodeButtonContainer .dressCodeButton {
   background-color: var(--olive-drab);
   padding: 1rem;
   border-radius: 1rem;
-  color: var(--nude-color);
   cursor: pointer;
 }
 
-.dressCodeButtonContainer .dressCodeButton:hover {
-  scale: 1.05;
+.dressCodeButtonContainer {
+  font-size: 1.5rem;
 }
 
-.dressCodeButtonContainer .dressCodeButton a {
+.dressCodeButtonContainer:hover {
+  transform: scale(1.2);
+}
+
+.dressCodeButtonContainer a {
   color: var(--nude-color);
   font-family: "Frank Ruhl Libre", serif;
   font-weight: bold;
@@ -853,7 +858,7 @@ button:hover {
 }
 
 .outro > * {
-  max-width: 70%;
+  max-width: 80%;
 }
 
 .outro .imageMask #outroImage {
@@ -882,7 +887,7 @@ button:hover {
   display: flex;
   flex-flow: column;
   gap: 2rem;
-  width: 70%;
+  width: 80%;
   background-color: var(--olive-drab);
   color: var(--floral-white);
   padding: 2rem;
